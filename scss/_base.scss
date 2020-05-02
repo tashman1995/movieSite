@@ -1,0 +1,55 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,400;1,900&display=swap");
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap');
+
+$color-primary: #00c1eb;
+
+$color-bg: #171717;
+$color-bg-dark: #131313;
+
+$color-grey-light-1: #a8a8a8;
+$color-grey-light-2: #f4f2f2;
+
+$color-grey-dark-1: #232323;
+$color-grey-dark-2: #808080;
+$color-grey-dark-3: #696969;
+$color-white: #fff;
+
+$border-line: 1px $color-white solid;
+
+$bp-largest: 75em; //1200 divided by 16
+$bp-large: 69.5em; //1100 divided by 16
+$bp-medium: 56.25em; //900 divided by 16
+$bp-small: 37.5em; //600 divided by 16
+$bp-smallest: 31.25em; //500 divided by 16
+$bp-tiny: 25.62em; //410 divided by 16
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+::after,
+::before {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; //1rem is 10px
+
+  @media only screen and (max-width: $bp-large) {
+    font-size: 50%;
+  }
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  line-height: 1.6;
+  color: $color-white;
+  background-color: $color-bg;
+
+  min-height: 100vh;
+}

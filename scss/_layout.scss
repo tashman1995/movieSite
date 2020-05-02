@@ -1,0 +1,32 @@
+.container {
+    display: flex;
+    position: relative;
+    
+}
+
+.side-bar {
+    background-color: $color-bg-dark;
+    height: 100vh;
+    width: 16rem;
+    position: fixed;
+}
+
+.main {
+    width: 100%;
+    margin-left: 16rem;
+}
+
+.header {
+    display: flex;
+    padding: 2rem;
+
+}
+
+.sub-content {
+    background-color: $color-bg-dark;
+}
+
+.results {
+    display: flex;
+    flex-wrap: wrap;
+}

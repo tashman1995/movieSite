@@ -1,39 +1,31 @@
-const createAutoComplete = ({ root, renderOption, onOptionSelect, inputValue, fetchData }) => {
+const createAutoComplete = ({ root, searchInput, renderOption, onOptionSelect, inputValue, fetchData }) => {
 
   root.innerHTML = `
-    <label><b>Search</b><label>
-    <input class = "input" class = "input"/>
-    <div class = "dropdown">
-    <div class = "dropdown-menu">
-        <div class = "dropdown-content results"></div>
+    <div class = "results">
     </div>
-    </div>
+    
     `;
 
-  const input           = root.querySelector(".input"),
-        dropdown        = root.querySelector(".dropdown"),
-        resultsWrapper  = root.querySelector(".results");
+  const resultsWrapper  = root.querySelector(".results");
 
 
   const onInput = async (event) => {
     const results = await fetchData(event.target.value);
 
     if (!results.length) {
-      dropdown.classList.remove("is-active");
+      resultsWrapper.innerHTML = "";
       return;
     }
 
     resultsWrapper.innerHTML = "";
-    dropdown.classList.add("is-active");
 
     for (let result of results) {
-      const option = document.createElement("a");
+      const option = document.createElement("div");
 
-      option.classList.add("dropdown-item");
+      option.classList.add("card");
       option.innerHTML = renderOption(result);
       option.addEventListener("click", () => {
-        dropdown.classList.remove("is-active");
-        input.value = inputValue(result);
+        searchInput.value = inputValue(result);
         onOptionSelect(result);
       });
 
@@ -41,11 +33,6 @@ const createAutoComplete = ({ root, renderOption, onOptionSelect, inputValue, fe
     }
   };
 
-  input.addEventListener("input", debounce(onInput, 500));
+  searchInput.addEventListener("input", debounce(onInput, 500));
 
-  document.addEventListener("click", (event) => {
-    if (!root.contains(event.target)) {
-      dropdown.classList.remove("is-active");
-    }
-  });
 };

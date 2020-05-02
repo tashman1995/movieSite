@@ -3,8 +3,9 @@ const autoCompleteConfig = {
   renderOption(movie) {
     const imgSrc = movie.Poster === "N/A" ? "" : movie.Poster;
     return `
-    <img src = "${imgSrc}"/>
-    ${movie.Title}`;
+    <img class = "card__img" src = "${imgSrc}"/>
+    <h3 class = "card__title">${movie.Title}</h3>
+    `;
   },
 
   //What the value of the search bar becomes when an option is selected
@@ -28,27 +29,27 @@ const autoCompleteConfig = {
   },
 };
 
-createAutoComplete({
-  ...autoCompleteConfig,
-  // Element to put resultsin
-  root: document.querySelector("#left-autocomplete"),
-  // What happens when a movie is selected
-  onOptionSelect(movie) {
-    document.querySelector(".tutorial").classList.add("is-hidden");
-    onMovieSelect(movie, document.querySelector("#left-summary"), "left");
-  },
-});
+// createAutoComplete({
+//   ...autoCompleteConfig,
+//   // Element to put resultsin
+//   root: document.querySelector("#left-autocomplete"),
+//   // What happens when a movie is selected
+//   onOptionSelect(movie) {
+//     document.querySelector(".tutorial").classList.add("is-hidden");
+//     onMovieSelect(movie, document.querySelector("#left-summary"), "left");
+//   },
+// });
 
-createAutoComplete({
-  ...autoCompleteConfig,
-  // Element to put resultsin
-  root: document.querySelector("#right-autocomplete"),
-  // What happens when a movie is selected
-  onOptionSelect(movie) {
-    document.querySelector(".tutorial").classList.add("is-hidden");
-    onMovieSelect(movie, document.querySelector("#right-summary"), "right");
-  },
-});
+// createAutoComplete({
+//   ...autoCompleteConfig,
+//   // Element to put resultsin
+//   root: document.querySelector("#right-autocomplete"),
+//   // What happens when a movie is selected
+//   onOptionSelect(movie) {
+//     document.querySelector(".tutorial").classList.add("is-hidden");
+//     onMovieSelect(movie, document.querySelector("#right-summary"), "right");
+//   },
+// });
 let leftMovie;
 let rightMovie;
 
@@ -150,18 +151,55 @@ const movieTemplate = (movieDetail) => {
   `;
 };
 
-const test = async (searchTerm) => {
-  const response = await axios.get("http://www.omdbapi.com/", {
-    params: {
-      apikey: "1ff2c261",
-      s: searchTerm,
-    },
-  });
+// const test = async (searchTerm) => {
+//   const response = await axios.get("http://www.omdbapi.com/", {
+//     params: {
+//       apikey: "1ff2c261",
+//       s: searchTerm,
+//     },
+//   });
 
-  if (response.data.Error) {
-    return [];
+//   if (response.data.Error) {
+//     return [];
+//   }
+
+//   console.log(response.data)
+//   return response.data;
+// }
+
+
+createAutoComplete({
+  ...autoCompleteConfig,
+  // Element to put resultsin
+  root: document.querySelector(".main-content"),
+
+  searchInput: document.querySelector('#search-input'),
+  // What happens when a movie is selected
+  onOptionSelect(movie) {
+    document.querySelector(".tutorial").classList.add("is-hidden");
+    console.log(movie)
+  },
+});
+
+const dropdown = document.querySelector('#dropdown1');
+const labelContent =   `<img src="img/icon.jpg" class="dropdown__img">
+<span class="dropdown__text">Tashman<span class = " dropdown__text--blue">1995</span></span>
+<svg class="dropdown__icon">
+  <use xlink:href="img/sprite.svg#icon-chevron-thin-down"> </use>
+</svg>`
+
+createDropdown({
+  dropdownElement: dropdown,
+  labelContent: labelContent,
+  options: ['Account', 'Pro Features','Settings','Log Out'],
+  onToggle(options) {
+    
+    const optionsElements = options.querySelectorAll('.dropdown__option');
+    options.classList.toggle('dropdown__options--show')
+    for(option of optionsElements){
+        option.classList.toggle('dropdown__option--show')
+    }
+    const icon = document.querySelector('.dropdown__icon');
+    icon.classList.toggle('dropdown__icon--rotated')
   }
-
-  console.log(response.data)
-  return response.data;
-}
+})
