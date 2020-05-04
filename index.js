@@ -25,6 +25,8 @@ const autoCompleteConfig = {
     if (response.data.Error) {
       return [];
     }
+
+    console.log(response.data.Search)
     return response.data.Search;
   },
 };
@@ -61,7 +63,7 @@ const onMovieSelect = async (movie, summaryElement, side) => {
     },
   });
 
-  console.log(response.data)
+  console.log(response.data);
 
   summaryElement.innerHTML = movieTemplate(response.data);
 
@@ -77,8 +79,12 @@ const onMovieSelect = async (movie, summaryElement, side) => {
 };
 
 const runComparison = () => {
-  const leftSideStats = document.querySelectorAll('#left-summary .notification');
-  const rightSideStats = document.querySelectorAll('#right-summary .notification');
+  const leftSideStats = document.querySelectorAll(
+    "#left-summary .notification"
+  );
+  const rightSideStats = document.querySelectorAll(
+    "#right-summary .notification"
+  );
 
   leftSideStats.forEach((leftStat, index) => {
     const rightStat = rightSideStats[index];
@@ -86,15 +92,14 @@ const runComparison = () => {
     const leftSideValue = parseInt(leftStat.dataset.value);
     const rightSideValue = parseInt(rightStat.dataset.value);
 
-    if(rightSideValue > leftSideValue) {
-      leftStat.classList.remove('is-primary');
-      leftStat.classList.add('is-warning');
+    if (rightSideValue > leftSideValue) {
+      leftStat.classList.remove("is-primary");
+      leftStat.classList.add("is-warning");
     } else {
-      rightStat.classList.remove('is-primary');
-      rightStat.classList.add('is-warning');
-
+      rightStat.classList.remove("is-primary");
+      rightStat.classList.add("is-warning");
     }
-  })
+  });
 };
 
 const movieTemplate = (movieDetail) => {
@@ -167,39 +172,48 @@ const movieTemplate = (movieDetail) => {
 //   return response.data;
 // }
 
-
 createAutoComplete({
   ...autoCompleteConfig,
   // Element to put resultsin
-  root: document.querySelector(".main-content"),
+  root: document.querySelector(".results-wrapper"),
 
-  searchInput: document.querySelector('#search-input'),
+  searchInput: document.querySelector("#search-input"),
   // What happens when a movie is selected
   onOptionSelect(movie) {
     document.querySelector(".tutorial").classList.add("is-hidden");
-    console.log(movie)
+    console.log(movie);
   },
 });
 
-const dropdown = document.querySelector('#dropdown1');
-const labelContent =   `<img src="img/icon.jpg" class="dropdown__img">
+const dropdown = document.querySelector("#dropdown1");
+const labelContent = `<img src="img/icon.jpg" class="dropdown__img">
 <span class="dropdown__text">Tashman<span class = " dropdown__text--blue">1995</span></span>
 <svg class="dropdown__icon">
   <use xlink:href="img/sprite.svg#icon-chevron-thin-down"> </use>
-</svg>`
+</svg>`;
+
+//Drop Down creation
 
 createDropdown({
   dropdownElement: dropdown,
   labelContent: labelContent,
-  options: ['Account', 'Pro Features','Settings','Log Out'],
+  options: ["Account", "Pro Features", "Settings", "Log Out"],
   onToggle(options) {
-    
-    const optionsElements = options.querySelectorAll('.dropdown__option');
-    options.classList.toggle('dropdown__options--show')
-    for(option of optionsElements){
-        option.classList.toggle('dropdown__option--show')
+    const optionsElements = options.querySelectorAll(".dropdown__option");
+    options.classList.toggle("dropdown__options--show");
+    for (option of optionsElements) {
+      option.classList.toggle("dropdown__option--show");
     }
-    const icon = document.querySelector('.dropdown__icon');
-    icon.classList.toggle('dropdown__icon--rotated')
-  }
-})
+    const icon = document.querySelector(".dropdown__icon");
+    icon.classList.toggle("dropdown__icon--rotated");
+  },
+  hideOptionsEl(options) {
+    const optionsElements = options.querySelectorAll(".dropdown__option");
+    options.classList.remove("dropdown__options--show");
+    for (option of optionsElements) {
+      option.classList.remove("dropdown__option--show");
+    }
+    const icon = document.querySelector(".dropdown__icon");
+    icon.classList.remove("dropdown__icon--rotated");
+  },
+});

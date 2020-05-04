@@ -4,6 +4,22 @@
     
 }
 
+.main-content {
+    display: flex;
+}
+
+.base {
+    // flex: 1 1 75%;
+    flex-grow: 1;
+}
+
+.top-picks {
+    width: 33rem;
+    background-color: $color-bg-dark;
+    height: 100vh;
+    padding: 4rem;
+}
+
 .side-bar {
     background-color: $color-bg-dark;
     height: 100vh;
@@ -25,6 +41,7 @@
 .sub-content {
     background-color: $color-bg-dark;
 }
+
 
 .results {
     display: flex;

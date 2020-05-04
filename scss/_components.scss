@@ -8,7 +8,6 @@
   justify-content: center;
   margin-left: 2rem;
 
-
   &__input {
     font-family: inherit;
     font-size: 1.6rem;
@@ -23,9 +22,7 @@
 
     &:focus {
       outline: none;
-	  transform: scale(1.02);
-
-
+      transform: scale(1.02);
     }
 
     &:-webkit-input-placeholder {
@@ -34,18 +31,18 @@
     }
   }
 
-&__input:focus + &__button {
-	transform: scale(1.1);
+  &__input:focus + &__button {
+    transform: scale(1.1);
   }
 
   &__button {
     border: none;
-	background-color: $color-white;
-	z-index: 20;
-	transition: all 0.2s;
+    background-color: $color-white;
+    z-index: 20;
+    transition: all 0.2s;
 
     &:focus {
-	  outline: none;
+      outline: none;
     }
 
     &:active {
@@ -56,7 +53,7 @@
   &__icon {
     height: 2rem;
     width: 2rem;
-	fill: $color-bg;
+    fill: $color-bg;
   }
 }
 
@@ -91,26 +88,23 @@
   position: relative;
   margin-right: 4rem;
   width: 22.4rem;
-
- 
+  z-index: 100;
 
   &__label {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background-color: $color-bg;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $color-bg;
     border: $border-line;
-    padding: .5rem 2rem .5rem 6rem;
-	border-radius: 100rem;
-	cursor: pointer;
-	z-index: 10;
-
-
+    padding: 0.5rem 2rem 0.5rem 6rem;
+    border-radius: 100rem;
+    cursor: pointer;
+    z-index: 10;
   }
 
   &__text {
-	font-size: 1.8rem;
-	z-index: 10;
+    font-size: 1.8rem;
+    z-index: 10;
 
     &--blue {
       color: $color-primary;
@@ -118,91 +112,316 @@
   }
 
   &__img {
-	position: absolute;
-	border: $border-line;
-	left: 0px;
-	height: 5rem;
-	border-radius: 100rem;
-	z-index: 10;
-
+    position: absolute;
+    border: $border-line;
+    left: 0px;
+    height: 5rem;
+    border-radius: 100rem;
+    z-index: 10;
   }
 
   &__icon {
     height: 1.8rem;
     width: 1.8rem;
-	fill: $color-white;
-	margin-left: 1rem;
-	z-index: 10;
-	transition: transform .2s;
+    fill: $color-white;
+    margin-left: 1rem;
+    z-index: 10;
+    transition: transform 0.2s;
 
-
-	&--rotated {
-		transform: rotate(180deg);		
-	}
+    &--rotated {
+      transform: rotate(180deg);
+    }
   }
 
   &__options {
-	position: absolute;
-	list-style-type: none;
-	top: 0rem;
-	left: 2.4rem;
-	right: 0;
-	margin-top: 2.4rem;
-	padding: 2.3rem 1rem 1.5rem 3.8rem;
-	border: $border-line;
-	border-top: transparent;
-	border-bottom-left-radius: 2.4rem;
-	border-bottom-right-radius: 2.4rem;
-	background-color: $color-bg;
-	transition: height .2s ease;
-	transform: translateY(1);
-	height: 0;
-	visibility: hidden;
-	// display: none;
+    position: absolute;
+    list-style-type: none;
+    top: 0rem;
+    left: 2.4rem;
+    right: 0;
+    margin-top: 2.4rem;
+    padding: 2.3rem 1rem 1.5rem 3.8rem;
+    border: $border-line;
+    border-top: transparent;
+    border-bottom-left-radius: 2.4rem;
+    border-bottom-right-radius: 2.4rem;
+    background-color: $color-bg;
+    transition: height 0.2s ease;
+    transform: translateY(1);
+    height: 0;
+    visibility: hidden;
+    // display: none;
 
-	&--show {
-		// margin-top: 2.4rem;
-		visibility: visible;
-		transform: translateY(0);
-		height: 19.5rem;
-	}
-	
+    &--show {
+      // margin-top: 2.4rem;
+      visibility: visible;
+      transform: translateY(0);
+      height: 19.5rem;
+    }
   }
 
   &__option {
+    text-decoration: none;
+    opacity: 0;
+    transition: all 1s;
+    transition-delay: 0.2s;
+    visibility: hidden;
 
-	text-decoration: none;
-	opacity: 0;
-	transition: all 1s;
-	transition-delay: .2s;
-	visibility: hidden;
+    &:not(:last-child) {
+      margin-bottom: 1.5rem;
+    }
 
-	
-	
-	&:not(:last-child){
-		margin-bottom: 1.5rem;
-	}
+    & a {
+      cursor: pointer;
+      text-decoration: none;
+      color: $color-grey-light-1;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: lighter;
+      transition: all 0.2s;
 
-	& a {
-		cursor: pointer;
-		text-decoration: none;
-		color: $color-grey-light-1;
-		text-transform: uppercase;
-		letter-spacing: 1px;
-		font-weight: lighter;
-		transition: all .2s;
-		
-		&:hover {
-			color: $color-white;
-			transform: scale(1.02);
+      &:hover {
+        color: $color-white;
+        transform: scale(1.02);
+      }
+    }
+
+    &--show {
+      visibility: visible;
+      opacity: 100%;
+    }
+  }
+}
+
+.base {
+  height: 40rem;
+  display: flex;
+  align-items: center;
+  transition: all .2s ease-out;
+  z-index: 2;
+
+
+	&__container {
+		width: 100%;
+		overflow: hidden;
+		height: 40rem;
+		position: relative;
+
+		&:hover .base__img {
+			transform: scale(1.1);
+			filter: blur(2px);
+			filter: brightness(60%);
+			
 		}
 	}
+  
+&__img {
+	width: 100%;
+	object-fit: cover;
+	position: absolute;
+	top: -50rem;
+	transition: all .6s ease-out;
 
-	&--show {
-		visibility: visible;
-		opacity: 100%;
-	}
+}
+
+  &__info {
+    display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin-left: auto;
+	padding: 0 6rem;
+	width: 45rem;
+	height: 100%;
+	z-index: 2;
+	background-image: linear-gradient(to right, rgba(246,246,246,0) 0%, rgba(0,0,0,0.4) 20%);
+
   }
 
+  &__sub-details {
+	  display: flex;
+	  width: 70%;
+	  justify-content: space-between;
+  }
 
+  &__ctas {
+	  display: flex;
+	  margin-top: .5rem;
+  }
+
+}
+
+.colour-btn {
+	&,
+    &:link,
+    &:visited {
+        text-decoration: none;
+        padding: .8rem 1.8rem;
+        display: inline-block;
+        border-radius: 10rem;
+        animation: moveInBottom 2s ease-out;
+        animation-delay: .3s;
+        animation-fill-mode: backwards;
+        transition: all .3s ease-in-out;
+        position: relative;
+        font-size: 1.6rem;
+        color: $color-white;
+		background-color: $color-primary;
+		//Removing button styling
+		font-weight: 300;
+		outline: none;
+		border: none;
+        cursor: pointer;
+	}
+	
+	&:hover,
+    &:focus {
+        transform: translateY(-.3rem);
+
+        outline: none;
+
+        &::after {
+            background-color: $color-white;
+            transform: scale(1.5);
+            opacity: 0;
+        }
+    }
+    
+    &:active,
+    &:focus {
+        transform: translateY(-.1rem);
+      
+    }
+}
+
+.film-card {
+	position: relative;
+	cursor: pointer;
+	// display: inline-block;
+	overflow: hidden;
+
+	&:hover {
+		& > .film-card__img {
+			filter: blur(3px);
+			
+
+		}
+	}
+	&__img {
+		width: 100%;
+		transition: all .3s;
+
+		&:hover {
+			transform: scale(2);
+		}
+		
+		
+	}
+
+	&__info-backdrop {
+		position: absolute;
+		top: 0;
+		padding: 2rem;
+		height: 100%;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		transition: all .6s;
+		
+		overflow: hidden;
+		& h3 {
+			font-size: 2rem;
+		}
+
+
+		&:hover {
+			background-color: rgba(0,0,0,.8);
+
+			& > .film-card__info {
+				transform: translateY(0);
+				opacity: 100%;
+			}
+		}
+
+
+	}
+
+	&__info {
+		transform: translateY(130%);
+		opacity: 0;
+		transition: all .6s;
+	}
+
+	&__details {
+		display: flex;
+		// margin-bottom: .2rem;
+		& p:last-child{
+			margin-left: 2rem;
+		}
+		
+	}
+}
+
+.hr {
+	border: 1px solid $color-grey-dark-1;
+}
+
+
+//////////////////////////////////
+//TYPOGRAPHY
+//////////////////////////////////
+.primary-heading {
+	line-height: 1;
+	font-size: 3.8rem;
+	font-weight: 700;
+}
+
+.secondary-heading {
+	font-size: 2rem;
+	letter-spacing: 1px;
+	line-height: 1;
+}
+
+.tertiary-heading {
+	font-size: 1.6rem;
+	letter-spacing: 1px;
+	line-height: 1;
+}
+
+.fourth-header {
+	font-size: 1.6rem;
+	line-height: 1;
+
+}
+
+.paragraph {
+	font-size: 1.6rem;
+	line-height: 1.6;
+}
+
+.sub-paragraph {
+	font-size: 1.4rem;
+	line-height: 1.6;
+}
+
+////////////////////////////////////
+// UTILITIES
+////////////////////////////////////
+
+.bottom-margin-large {
+	margin-bottom: 2.4rem;
+}
+.bottom-margin {
+	margin-bottom: 1.6rem;
+}
+
+.bottom-margin-small {
+	margin-bottom: 1rem;
+}
+.bottom-margin-smaller {
+	margin-bottom: .5rem;
+}
+
+.all-caps {
+	text-transform: uppercase;
 }
