@@ -298,6 +298,7 @@
 	cursor: pointer;
 	// display: inline-block;
 	overflow: hidden;
+	margin-bottom: 2.4rem;
 
 	&:hover {
 		& > .film-card__img {
@@ -366,62 +367,27 @@
 	border: 1px solid $color-grey-dark-1;
 }
 
-
-//////////////////////////////////
-//TYPOGRAPHY
-//////////////////////////////////
-.primary-heading {
-	line-height: 1;
-	font-size: 3.8rem;
-	font-weight: 700;
+.suggestions {
+	padding: $content-padding;
+	&__headings {
+		display: flex;
+		margin-bottom: $content-padding;
+	}
+	&__cards {
+		display: flex;
+		justify-content: space-between;
+		
+	}
 }
 
-.secondary-heading {
-	font-size: 2rem;
-	letter-spacing: 1px;
-	line-height: 1;
+.lscape-card {
+
+	&:not(:last-child){
+		margin-right: $content-padding;
+	}
+	
+	&__img {
+		width: 100%;
+	}
 }
 
-.tertiary-heading {
-	font-size: 1.6rem;
-	letter-spacing: 1px;
-	line-height: 1;
-}
-
-.fourth-header {
-	font-size: 1.6rem;
-	line-height: 1;
-
-}
-
-.paragraph {
-	font-size: 1.6rem;
-	line-height: 1.6;
-}
-
-.sub-paragraph {
-	font-size: 1.4rem;
-	line-height: 1.6;
-}
-
-////////////////////////////////////
-// UTILITIES
-////////////////////////////////////
-
-.bottom-margin-large {
-	margin-bottom: 2.4rem;
-}
-.bottom-margin {
-	margin-bottom: 1.6rem;
-}
-
-.bottom-margin-small {
-	margin-bottom: 1rem;
-}
-.bottom-margin-smaller {
-	margin-bottom: .5rem;
-}
-
-.all-caps {
-	text-transform: uppercase;
-}

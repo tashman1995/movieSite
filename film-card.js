@@ -1,5 +1,5 @@
-const createFilmCard = (movie) => {
-    const topPicksContainer = document.querySelector('.top-picks')
+const createFilmCard = async (movie,targetElement) => {
+    
     
     const  fetchFilm  = async (movie) => {
 
@@ -14,29 +14,37 @@ const createFilmCard = (movie) => {
             console.log(response.data.Error)
           return [];
         }
+        // console.log(response.data)
         return response.data;
     }
 
-    const filmDetails = fetchFilm(movie);
-    console.log(filmDetails)
+    const results = await fetchFilm(movie);
+    console.log(results)
+    // console.log(filmDetails)
+    const boxOffice = (parseInt(results.BoxOffice.replace(/\D/g,'') /1000000)).toFixed(0);
+
+    const genres = results.Genre.split(", ", 2);
+    const genresString = genres[0] + ',  ' + genres[1]
+    
+    console.log(genresString)
 
     const cardElement = document.createElement('div');
     cardElement.classList.add('film-card');
     cardElement.innerHTML = `
-    <img src="https://m.media-amazon.com/images/M/MV5BZjdkOTU3MDktN2IxOS00OGEyLWFmMjktY2FiMmZkNWIyODZiXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg" alt="" class="film-card__img">
+    <img src="${results.Poster}" alt="" class="film-card__img">
               <div class="film-card__info-backdrop">
                 <div class="film-card__info">
-                  <h3 class="tertiary-heading bottom-margin-small">Interstellar</h3>
+                  <h3 class="tertiary-heading bottom-margin-small">${results.Title}</h3>
                   <div class="film-card__details">
-                    <p class="sub-paragraph all-caps">PG</p>
-                    <p class="sub-paragraph all-caps">$44,0M</p>
+                    <p class="sub-paragraph all-caps">${results.Rated}</p>
+                    <p class="sub-paragraph all-caps">$${boxOffice}M</p>
                   </div>
-                    <p class="sub-paragraph all-caps">Action, Adventure</p>  
+                    <p class="sub-paragraph smaller all-caps">${genresString}</p>  
                 </div>
               </div>
     `;
 
 
-    topPicksContainer.appendChild(cardElement)
+    targetElement.appendChild(cardElement)
       
 }

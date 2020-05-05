@@ -19,7 +19,7 @@ html {
 }
 
 body {
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 300;
   line-height: 1.6;
   color: #fff;
@@ -32,25 +32,8 @@ body {
   display: -ms-flexbox;
   display: flex;
   position: relative;
-}
-
-.main-content {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.base {
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
-}
-
-.top-picks {
-  width: 33rem;
-  background-color: #131313;
   height: 100vh;
-  padding: 4rem;
+  overflow: hidden;
 }
 
 .side-bar {
@@ -69,7 +52,55 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding: 2rem;
+  padding: 1.5rem 2rem;
+  width: 100%;
+}
+
+.content {
+  margin-right: 33rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.central-content {
+  width: 100%;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+.central-content__container {
+  overflow: scroll;
+  position: fixed;
+}
+
+.top-picks {
+  position: fixed;
+  right: 0;
+  width: 33rem;
+  background-color: #131313;
+  height: 100vh;
+  padding: 3rem;
+  overflow: scroll;
+}
+
+.top-picks::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #131313;
+}
+
+.top-picks::-webkit-scrollbar {
+  width: 12px;
+  background-color: #131313;
+}
+
+.top-picks::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #555;
+  opacity: 0;
 }
 
 .sub-content {
@@ -424,6 +455,7 @@ body {
   position: relative;
   cursor: pointer;
   overflow: hidden;
+  margin-bottom: 2.4rem;
 }
 
 .film-card:hover > .film-card__img {
@@ -499,6 +531,34 @@ body {
   border: 1px solid #232323;
 }
 
+.suggestions {
+  padding: 3rem;
+}
+
+.suggestions__headings {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 3rem;
+}
+
+.suggestions__cards {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.lscape-card:not(:last-child) {
+  margin-right: 3rem;
+}
+
+.lscape-card__img {
+  width: 100%;
+}
+
 .primary-heading {
   line-height: 1;
   font-size: 3.8rem;
@@ -520,6 +580,7 @@ body {
 .fourth-header {
   font-size: 1.6rem;
   line-height: 1;
+  font-weight: 400;
 }
 
 .paragraph {
@@ -530,6 +591,10 @@ body {
 .sub-paragraph {
   font-size: 1.4rem;
   line-height: 1.6;
+}
+
+.smaller {
+  font-size: 1.2rem;
 }
 
 .bottom-margin-large {

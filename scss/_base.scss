@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,400;1,900&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap");
 
 $color-primary: #00c1eb;
 
@@ -16,6 +16,8 @@ $color-grey-dark-3: #696969;
 $color-white: #fff;
 
 $border-line: 1px $color-white solid;
+
+$content-padding: 3rem;
 
 $bp-largest: 75em; //1200 divided by 16
 $bp-large: 69.5em; //1100 divided by 16
@@ -38,11 +40,10 @@ $bp-tiny: 25.62em; //410 divided by 16
 html {
   box-sizing: border-box;
   font-size: 62.5%; //1rem is 10px
-
 }
 
 body {
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 300;
   line-height: 1.6;
   color: $color-white;

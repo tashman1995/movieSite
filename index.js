@@ -59,7 +59,7 @@ const onMovieSelect = async (movie, summaryElement, side) => {
   const response = await axios.get("http://www.omdbapi.com/", {
     params: {
       apikey: "1ff2c261",
-      i: movie.imdbID,
+      i: movie.imdbID
     },
   });
 
@@ -217,3 +217,11 @@ createDropdown({
     icon.classList.remove("dropdown__icon--rotated");
   },
 });
+
+
+// TOP PICK FILMS GENERATOR
+// let topPickFilms = ['Interstellar', 'inception', 'Django Unchained', '1917'];
+// const topPicksContainer = document.querySelector('.top-picks');
+// for(i = 0; i < topPickFilms.length; i++){
+//   createFilmCard(topPickFilms[i], topPicksContainer);
+// }
