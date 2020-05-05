@@ -371,23 +371,88 @@
 	padding: $content-padding;
 	&__headings {
 		display: flex;
-		margin-bottom: $content-padding;
+		justify-content: space-between;
+		width: 18rem;
+		margin-bottom: $content-padding/3;
 	}
+
+	&__heading {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		transition: all .6s ease-in;
+		cursor: pointer;
+
+		&--not-selected {
+			opacity: 40%;
+
+			&:hover {
+				opacity: 100%;
+
+				& > .suggestions__hr {
+					width: 5rem;
+					visibility: visible;
+					
+				}
+
+			}
+
+			& > .suggestions__hr {
+				width: 0;
+				visibility: hidden;
+			}
+		}
+	}
+
 	&__cards {
+		margin-top: $content-padding;
 		display: flex;
 		justify-content: space-between;
 		
 	}
+
+	&__hr {
+		width: 5rem;
+		margin: .5rem auto 1.5rem;
+		text-align: center;
+		border: 1px solid $color-primary;
+		transition: all .6s;
+
+		&--hidden {
+			width: 0rem;
+			visibility: hidden;
+		}
+	}
 }
 
 .lscape-card {
+	width: 28%;
 
 	&:not(:last-child){
 		margin-right: $content-padding;
 	}
+
+	&__sub-details {
+		display: flex;
+		
+		& > .sub-paragraph:not(:last-child) {
+			margin-right: 2rem;
+		}
+
+	}
 	
 	&__img {
+		cursor: pointer;
 		width: 100%;
+		height: 60%;
+		object-fit: cover;
+		transition: all .2s;
+
+		&:hover {
+			transform: scale(1.05) translateY(-2px);
+		}
 	}
 }
+
+
 

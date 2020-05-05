@@ -34,7 +34,11 @@
 
 .sub-paragraph {
 	font-size: 1.4rem;
-	line-height: 1.6;
+    line-height: 1.6;
+    
+    &--faded {
+        opacity: 40%;
+    }
 }
 
 .smaller {

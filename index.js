@@ -1,3 +1,5 @@
+createCentralContent()
+
 const autoCompleteConfig = {
   // What renders for each result
   renderOption(movie) {
@@ -217,6 +219,8 @@ createDropdown({
     icon.classList.remove("dropdown__icon--rotated");
   },
 });
+
+
 
 
 // TOP PICK FILMS GENERATOR
