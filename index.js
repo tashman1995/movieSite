@@ -4,6 +4,8 @@ const centralContent = document.querySelector('.central-content');
 updatedCentralContent = createCentralContent();
 centralContent.appendChild(updatedCentralContent);
 
+//AUTO COMPLETE
+
 const autoCompleteConfig = {
   // What renders for each result
   renderOption(movie) {
@@ -36,6 +38,67 @@ const autoCompleteConfig = {
     return response.data.Search;
   },
 };
+
+/// DROP DOWN
+const dropdown = document.querySelector("#dropdown1");
+const labelContent = `<img src="img/icon.jpg" class="dropdown__img">
+<span class="dropdown__text">Tashman<span class = " dropdown__text--blue">1995</span></span>
+<svg class="dropdown__icon">
+  <use xlink:href="img/sprite.svg#icon-chevron-thin-down"> </use>
+</svg>`;
+
+
+createDropdown({
+  dropdownElement: dropdown,
+  labelContent: labelContent,
+  options: ["Account", "Pro Features", "Settings", "Log Out"],
+  onToggle(options) {
+    const optionsElements = options.querySelectorAll(".dropdown__option");
+    options.classList.toggle("dropdown__options--show");
+    for (option of optionsElements) {
+      option.classList.toggle("dropdown__option--show");
+    }
+    const icon = document.querySelector(".dropdown__icon");
+    icon.classList.toggle("dropdown__icon--rotated");
+  },
+  hideOptionsEl(options) {
+    const optionsElements = options.querySelectorAll(".dropdown__option");
+    options.classList.remove("dropdown__options--show");
+    for (option of optionsElements) {
+      option.classList.remove("dropdown__option--show");
+    }
+    const icon = document.querySelector(".dropdown__icon");
+    icon.classList.remove("dropdown__icon--rotated");
+  },
+});
+
+// CREATE AUTOCOMPLETE
+
+createAutoComplete({
+  ...autoCompleteConfig,
+  // Element to put resultsin
+  root: document.querySelector(".results-wrapper"),
+
+  searchInput: document.querySelector("#search-input"),
+  // What happens when a movie is selected
+  onOptionSelect(movie) {
+    document.querySelector(".tutorial").classList.add("is-hidden");
+    console.log(movie);
+  },
+});
+
+// SUGGESTIONS FUNCTIONALITY
+
+const moviesSuggestionsBtn = document.querySelector('#movieSuggestionsBtn');
+
+const switchSuggestions = (e) => {
+  let type = e.toElement.innerText;
+
+}
+
+//ADD EVENT LISTENERS
+moviesSuggestionsBtn.addEventListener('click', switchSuggestions);
+
 
 // createAutoComplete({
 //   ...autoCompleteConfig,
@@ -178,51 +241,7 @@ const movieTemplate = (movieDetail) => {
 //   return response.data;
 // }
 
-createAutoComplete({
-  ...autoCompleteConfig,
-  // Element to put resultsin
-  root: document.querySelector(".results-wrapper"),
 
-  searchInput: document.querySelector("#search-input"),
-  // What happens when a movie is selected
-  onOptionSelect(movie) {
-    document.querySelector(".tutorial").classList.add("is-hidden");
-    console.log(movie);
-  },
-});
-
-const dropdown = document.querySelector("#dropdown1");
-const labelContent = `<img src="img/icon.jpg" class="dropdown__img">
-<span class="dropdown__text">Tashman<span class = " dropdown__text--blue">1995</span></span>
-<svg class="dropdown__icon">
-  <use xlink:href="img/sprite.svg#icon-chevron-thin-down"> </use>
-</svg>`;
-
-//Drop Down creation
-
-createDropdown({
-  dropdownElement: dropdown,
-  labelContent: labelContent,
-  options: ["Account", "Pro Features", "Settings", "Log Out"],
-  onToggle(options) {
-    const optionsElements = options.querySelectorAll(".dropdown__option");
-    options.classList.toggle("dropdown__options--show");
-    for (option of optionsElements) {
-      option.classList.toggle("dropdown__option--show");
-    }
-    const icon = document.querySelector(".dropdown__icon");
-    icon.classList.toggle("dropdown__icon--rotated");
-  },
-  hideOptionsEl(options) {
-    const optionsElements = options.querySelectorAll(".dropdown__option");
-    options.classList.remove("dropdown__options--show");
-    for (option of optionsElements) {
-      option.classList.remove("dropdown__option--show");
-    }
-    const icon = document.querySelector(".dropdown__icon");
-    icon.classList.remove("dropdown__icon--rotated");
-  },
-});
 
 
 

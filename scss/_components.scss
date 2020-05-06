@@ -199,6 +199,7 @@
   align-items: center;
   transition: all .2s ease-out;
   z-index: 2;
+  
 
 
 	&__container {
@@ -401,12 +402,24 @@
 				visibility: hidden;
 			}
 		}
-	}
+  }
+  
+  &__cards {
+    position: relative;
+    display: flex;
+  }
 
-	&__cards {
+	&__cards-container {
 		margin-top: $content-padding;
 		display: flex;
-		justify-content: space-between;
+    justify-content: space-between;
+    position: absolute;
+    top: 0;
+    transition: all .2s ease-in-out;
+
+    &--selected {
+      transform: translateX(150%);
+    }
 		
 	}
 

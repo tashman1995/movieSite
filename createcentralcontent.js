@@ -1,20 +1,19 @@
 const createCentralContent = () => {
-    const container = document.createElement('div');
-    container.classList.add('central-content__container');
-    const baseImg = createBaseImg(darkKnight);
-    const suggestions = createSuggestions(tvShows);
+  const container = document.createElement("div");
+  container.classList.add("central-content__container");
+  const baseImg = createBaseImg(darkKnight);
+  const suggestions = createSuggestions([tvShows, movies]);
 
-    container.appendChild(baseImg);
-    container.appendChild(suggestions);
+  container.appendChild(baseImg);
+  container.appendChild(suggestions);
 
-    return container;
-}
-
+  return container;
+};
 
 const createBaseImg = (filmData) => {
-    const baseContainer = document.createElement('div');
-    baseContainer.classList.add('base__container');
-    baseContainer.innerHTML = `
+  const baseContainer = document.createElement("div");
+  baseContainer.classList.add("base__container");
+  baseContainer.innerHTML = `
         
             <img
             class="base__img"
@@ -45,58 +44,75 @@ const createBaseImg = (filmData) => {
             </div>
             </div>
 
-    `
-    return baseContainer;
-}
+    `;
+  return baseContainer;
+};
 
-const createSuggestions = (shows) => {
-    const suggestions = document.createElement('div');
-    suggestions.classList.add('suggestions');
+const createSuggestions = (showTypes) => {
+  const suggestions = document.createElement("div");
+  suggestions.classList.add("suggestions");
 
-    const suggestionHeadings = document.createElement('div');
-    suggestionHeadings.classList.add('suggestions__headings');
-    suggestionHeadings.innerHTML = `
-        <div class="suggestions__heading">
+  const suggestionHeadings = document.createElement("div");
+  suggestionHeadings.classList.add("suggestions__headings");
+  suggestionHeadings.innerHTML = `
+        <div class="suggestions__heading" id = 'tvSuggestionsBtn'>
             <h2 class="secondary-heading">
             Tv Shows
             </h2>
             <hr class="suggestions__hr">
         </div>
-         <div class="suggestions__heading suggestions__heading--not-selected">
+         <div class="suggestions__heading suggestions__heading--not-selected" id = "movieSuggestionsBtn">
             <h2 class="secondary-heading ">
             Movies
             </h2>
             <hr class="suggestions__hr">
     </div>
     `;
+    // const sugg
+  const suggestionCards = document.createElement("div");
+  suggestionCards.classList.add("suggestions__cards");
+  const suggestionCardsTvShows = document.createElement('div');
+  suggestionCardsTvShows.classList.add('suggestions__cards-container');
+  const suggestionCardsMovies = document.createElement('div');
+  suggestionCardsMovies.classList.add('suggestions__cards-container','suggestions__cards-container--selected');
 
-    const suggestionCards = document.createElement('div');
-    suggestionCards.classList.add('suggestions__cards');
+  for (show of showTypes[0]) {
+    let card = createLscapeCard(show);
+    suggestionCardsTvShows.appendChild(card);
+  }
 
-    for (show of shows) {
-        const card = document.createElement('div');
-        card.classList.add('lscape-card');
-        card.innerHTML = `
-            <img src="${show.poster}" alt="" class="lscape-card__img bottom-margin-small">
-            <div class="lscape-card__details">
-            <h4 class="fourth-header bottom-margin-smaller">${show.title}</h4>
-            <div class="lscape-card__sub-details">
-                <p class="sub-paragraph sub-paragraph--faded all-caps">${show.genre}</p>
-                <p class="sub-paragraph sub-paragraph--faded all-caps">${show.rating}/10</p>
-            </div>
-            </div>            
-        `
-        suggestionCards.appendChild(card)
-    }
+  for (movie of showTypes[1]) {
+    let card = createLscapeCard(movie);
+    suggestionCardsMovies.appendChild(card);
+  }
 
-    const hr = document.createElement('hr');
-    hr.classList.add('hr');
-
-    suggestions.appendChild(suggestionHeadings);
-    suggestions.appendChild(hr);
-    suggestions.appendChild(suggestionCards);
-
-    return suggestions;
+  suggestionCards.appendChild(suggestionCardsTvShows);
+  suggestionCards.appendChild(suggestionCardsMovies);
 
 
-}
+
+  const hr = document.createElement("hr");
+  hr.classList.add("hr");
+
+  suggestions.appendChild(suggestionHeadings);
+  suggestions.appendChild(hr);
+  suggestions.appendChild(suggestionCards);
+
+  return suggestions;
+};
+
+const createLscapeCard = (show) => {
+  const card = document.createElement("div");
+  card.classList.add("lscape-card");
+  card.innerHTML = `
+        <img src="${show.poster}" alt="" class="lscape-card__img bottom-margin-small">
+        <div class="lscape-card__details">
+        <h4 class="fourth-header bottom-margin-smaller">${show.title}</h4>
+        <div class="lscape-card__sub-details">
+            <p class="sub-paragraph sub-paragraph--faded all-caps">${show.genre}</p>
+            <p class="sub-paragraph sub-paragraph--faded all-caps">${show.rating}/10</p>
+        </div>
+        </div>            
+    `;
+  return card;
+};
