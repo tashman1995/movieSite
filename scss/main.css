@@ -44,7 +44,7 @@ body {
 }
 
 .main {
-  width: 100%;
+  width: 100vw;
   margin-left: 16rem;
 }
 
@@ -57,46 +57,67 @@ body {
 }
 
 .content {
-  margin-right: 33rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  width: 100%;
 }
 
 .central-content {
   width: 100%;
+  position: relative;
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
 }
 
 .central-content__container {
-  overflow: scroll;
-  position: fixed;
+  width: 100%;
+  top: 0;
+}
+
+.central-content__container::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #131313;
+}
+
+.central-content__container::-webkit-scrollbar {
+  width: 12px;
+  background-color: #131313;
+}
+
+.central-content__container::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #555;
+  opacity: 0;
 }
 
 .top-picks {
-  position: fixed;
-  right: 0;
   width: 33rem;
+}
+
+.top-picks__container {
+  right: 0;
   background-color: #131313;
   height: 100vh;
   padding: 3rem;
   overflow: scroll;
 }
 
-.top-picks::-webkit-scrollbar-track {
+.top-picks__container::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   background-color: #131313;
 }
 
-.top-picks::-webkit-scrollbar {
+.top-picks__container::-webkit-scrollbar {
   width: 12px;
   background-color: #131313;
 }
 
-.top-picks::-webkit-scrollbar-thumb {
+.top-picks__container::-webkit-scrollbar-thumb {
   border-radius: 10px;
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   background-color: #555;
@@ -543,7 +564,6 @@ body {
       -ms-flex-pack: justify;
           justify-content: space-between;
   width: 18rem;
-  margin-bottom: 1rem;
 }
 
 .suggestions__heading {

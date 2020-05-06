@@ -1,4 +1,8 @@
-createCentralContent()
+
+// MOVIES AND TV FILM SUGGESTIONS
+const centralContent = document.querySelector('.central-content');
+updatedCentralContent = createCentralContent();
+centralContent.appendChild(updatedCentralContent);
 
 const autoCompleteConfig = {
   // What renders for each result
