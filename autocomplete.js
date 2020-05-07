@@ -1,23 +1,35 @@
-const createAutoComplete = ({ root, searchInput, renderOption, onOptionSelect, inputValue, fetchData }) => {
+const createAutoComplete = ({
+  root,
+  searchInput,
+  renderOption,
+  onOptionSelect,
+  inputValue,
+  fetchData,
+}) => {
+  let resultsWrapper;
 
-  root.innerHTML = `
-    <div class = "results">
-    </div>
-    
-    `;
-
-  const resultsWrapper  = root.querySelector(".results");
-
+  
 
   const onInput = async (event) => {
     const results = await fetchData(event.target.value);
 
-    if (!results.length) {
-      resultsWrapper.innerHTML = "";
-      return;
+    if (results.length > 0 && centralContentStatus === "home") {
+      checkStatusUpdateContent("search");
+
+      root.innerHTML = `
+        <div class = "results">
+        </div>
+        `;
     }
 
-    resultsWrapper.innerHTML = "";
+    resultsWrapper = root.querySelector(".results");
+
+    if (!results.length && centralContentStatus === "search") {
+      resultsWrapper.innerHTML = "";
+
+      checkStatusUpdateContent("home");
+      return;
+    }
 
     for (let result of results) {
       const option = document.createElement("div");
@@ -34,5 +46,4 @@ const createAutoComplete = ({ root, searchInput, renderOption, onOptionSelect, i
   };
 
   searchInput.addEventListener("input", debounce(onInput, 500));
-
 };

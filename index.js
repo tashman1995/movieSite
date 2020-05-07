@@ -1,8 +1,21 @@
+let centralContentStatus = "home";
+const centralContent = document.querySelector(".central-content");
 
 // MOVIES AND TV FILM SUGGESTIONS
-const centralContent = document.querySelector('.central-content');
-updatedCentralContent = createCentralContent();
-centralContent.appendChild(updatedCentralContent);
+
+centralContentHome = createCentralContent();
+
+const checkStatusUpdateContent = (status) => {
+  centralContentStatus = status;
+  if ((centralContentStatus === "home")) {
+    centralContent.appendChild(centralContentHome);
+    centralContent.classList.remove('hidden')
+  } else if ((centralContentStatus === "search")) {
+    centralContent.classList.add("hidden");
+  }
+};
+
+checkStatusUpdateContent(centralContentStatus);
 
 //AUTO COMPLETE
 
@@ -34,10 +47,31 @@ const autoCompleteConfig = {
       return [];
     }
 
-    console.log(response.data.Search)
     return response.data.Search;
   },
 };
+
+// CREATE AUTOCOMPLETE
+
+const searchInput = document.querySelector("#search-input");
+
+const checkIfInputValue = () => {
+  if (searchInput.value) {
+  } else {
+  }
+};
+
+createAutoComplete({
+  ...autoCompleteConfig,
+  // Element to put results in
+  root: document.querySelector(".search-results__container"),
+
+  searchInput: searchInput,
+  // What happens when a movie is selected
+  onOptionSelect(movie) {
+    document.querySelector(".tutorial").classList.add("is-hidden");
+  },
+});
 
 /// DROP DOWN
 const dropdown = document.querySelector("#dropdown1");
@@ -46,7 +80,6 @@ const labelContent = `<img src="img/icon.jpg" class="dropdown__img">
 <svg class="dropdown__icon">
   <use xlink:href="img/sprite.svg#icon-chevron-thin-down"> </use>
 </svg>`;
-
 
 createDropdown({
   dropdownElement: dropdown,
@@ -72,33 +105,44 @@ createDropdown({
   },
 });
 
-// CREATE AUTOCOMPLETE
 
-createAutoComplete({
-  ...autoCompleteConfig,
-  // Element to put resultsin
-  root: document.querySelector(".results-wrapper"),
-
-  searchInput: document.querySelector("#search-input"),
-  // What happens when a movie is selected
-  onOptionSelect(movie) {
-    document.querySelector(".tutorial").classList.add("is-hidden");
-    console.log(movie);
-  },
-});
 
 // SUGGESTIONS FUNCTIONALITY
 
-const moviesSuggestionsBtn = document.querySelector('#movieSuggestionsBtn');
-
+const moviesSuggestionsBtn = document.querySelector("#movieSuggestionsBtn");
+const tvShowSuggestionsBtn = document.querySelector("#tvShowSuggestionsBtn");
+const suggestionContainers = document.querySelectorAll(
+  ".suggestions__cards-container"
+);
+suggestionContainers[1].classList.add("suggestions__cards-container--moveLeft");
 const switchSuggestions = (e) => {
   let type = e.toElement.innerText;
 
-}
+  if (type === "Movies") {
+    suggestionContainers[1].classList.remove(
+      "suggestions__cards-container--moveLeft"
+    );
+    suggestionContainers[0].classList.add(
+      "suggestions__cards-container--moveRight"
+    );
+    moviesSuggestionsBtn.classList.remove("suggestions__heading--not-selected");
+    tvShowSuggestionsBtn.classList.add("suggestions__heading--not-selected");
+  } else {
+    suggestionContainers[1].classList.add(
+      "suggestions__cards-container--moveLeft"
+    );
+    suggestionContainers[0].classList.remove(
+      "suggestions__cards-container--moveRight"
+    );
+    moviesSuggestionsBtn.classList.add("suggestions__heading--not-selected");
+    tvShowSuggestionsBtn.classList.remove("suggestions__heading--not-selected");
+  }
+};
 
 //ADD EVENT LISTENERS
-moviesSuggestionsBtn.addEventListener('click', switchSuggestions);
-
+moviesSuggestionsBtn.addEventListener("click", switchSuggestions);
+tvShowSuggestionsBtn.addEventListener("click", switchSuggestions);
+searchInput.addEventListener("input", checkIfInputValue);
 
 // createAutoComplete({
 //   ...autoCompleteConfig,
@@ -121,109 +165,109 @@ moviesSuggestionsBtn.addEventListener('click', switchSuggestions);
 //     onMovieSelect(movie, document.querySelector("#right-summary"), "right");
 //   },
 // });
-let leftMovie;
-let rightMovie;
+// let leftMovie;
+// let rightMovie;
 
-const onMovieSelect = async (movie, summaryElement, side) => {
-  const response = await axios.get("http://www.omdbapi.com/", {
-    params: {
-      apikey: "1ff2c261",
-      i: movie.imdbID
-    },
-  });
+// const onMovieSelect = async (movie, summaryElement, side) => {
+//   const response = await axios.get("http://www.omdbapi.com/", {
+//     params: {
+//       apikey: "1ff2c261",
+//       i: movie.imdbID,
+//     },
+//   });
 
-  console.log(response.data);
+//   console.log(response.data);
 
-  summaryElement.innerHTML = movieTemplate(response.data);
+//   summaryElement.innerHTML = movieTemplate(response.data);
 
-  if (side === "left") {
-    leftMovie = response.data;
-  } else {
-    rightMovie = response.data;
-  }
+//   if (side === "left") {
+//     leftMovie = response.data;
+//   } else {
+//     rightMovie = response.data;
+//   }
 
-  if (leftMovie && rightMovie) {
-    runComparison();
-  }
-};
+//   if (leftMovie && rightMovie) {
+//     runComparison();
+//   }
+// };
 
-const runComparison = () => {
-  const leftSideStats = document.querySelectorAll(
-    "#left-summary .notification"
-  );
-  const rightSideStats = document.querySelectorAll(
-    "#right-summary .notification"
-  );
+// const runComparison = () => {
+//   const leftSideStats = document.querySelectorAll(
+//     "#left-summary .notification"
+//   );
+//   const rightSideStats = document.querySelectorAll(
+//     "#right-summary .notification"
+//   );
 
-  leftSideStats.forEach((leftStat, index) => {
-    const rightStat = rightSideStats[index];
+//   leftSideStats.forEach((leftStat, index) => {
+//     const rightStat = rightSideStats[index];
 
-    const leftSideValue = parseInt(leftStat.dataset.value);
-    const rightSideValue = parseInt(rightStat.dataset.value);
+//     const leftSideValue = parseInt(leftStat.dataset.value);
+//     const rightSideValue = parseInt(rightStat.dataset.value);
 
-    if (rightSideValue > leftSideValue) {
-      leftStat.classList.remove("is-primary");
-      leftStat.classList.add("is-warning");
-    } else {
-      rightStat.classList.remove("is-primary");
-      rightStat.classList.add("is-warning");
-    }
-  });
-};
+//     if (rightSideValue > leftSideValue) {
+//       leftStat.classList.remove("is-primary");
+//       leftStat.classList.add("is-warning");
+//     } else {
+//       rightStat.classList.remove("is-primary");
+//       rightStat.classList.add("is-warning");
+//     }
+//   });
+// };
 
-const movieTemplate = (movieDetail) => {
-  const dollars = parseInt(
-    movieDetail.BoxOffice.replace(/$/g, "").replace(/,/g, "")
-  );
-  const metascore = parseInt(movieDetail.Metascore);
-  const imdbRating = parseFloat(movieDetail.imdbRating);
-  const imdbVotes = parseInt(movieDetail.imdbVotes.replace(/,/g, ""));
+// const movieTemplate = (movieDetail) => {
+//   const dollars = parseInt(
+//     movieDetail.BoxOffice.replace(/$/g, "").replace(/,/g, "")
+//   );
+//   const metascore = parseInt(movieDetail.Metascore);
+//   const imdbRating = parseFloat(movieDetail.imdbRating);
+//   const imdbVotes = parseInt(movieDetail.imdbVotes.replace(/,/g, ""));
 
-  const awards = movieDetail.Awards.split(" ").reduce((prev, word) => {
-    const value = parseInt(word);
+//   const awards = movieDetail.Awards.split(" ").reduce((prev, word) => {
+//     const value = parseInt(word);
 
-    if (isNaN(value)) {
-      return prev;
-    } else {
-      return prev + value;
-    }
-  }, 0);
+//     if (isNaN(value)) {
+//       return prev;
+//     } else {
+//       return prev + value;
+//     }
+//   }, 0);
 
-  return `
-    <article class = "media">
-      <figure class = "media-left">
-        <p class = "image">
-          <img src = "${movieDetail.Poster}" />
-        </p>
-      </figure>
-      <div class = "content">
-        <h1>${movieDetail.Title}</h1>
-        <h4>${movieDetail.Genre}</h4>
-        <p>${movieDetail.Plot}</p>
-      </div>
-    </article>
-    <article data-value = "${awards}" class="notification is-primary">
-      <p class = "title">${movieDetail.Awards}</p>
-      <p class = "subtitle">Awards</p>
-    </article>
-    <article data-value = "${dollars}" class="notification is-primary">
-      <p class = "title">${movieDetail.BoxOffice}</p>
-      <p class = "subtitle">Box Office</p>
-    </article>
-    <article data-value = "${metascore}" class="notification is-primary">
-      <p class = "title">${movieDetail.Metascore}</p>
-      <p class = "subtitle">MetaScore</p>
-    </article>
-    <article data-value = "${imdbRating}" class="notification is-primary">
-      <p class = "title">${movieDetail.imdbRating}</p>
-      <p class = "subtitle">IMDB Rating</p>
-    </article>
-    <article data-value = "${imdbVotes}" class="notification is-primary">
-      <p class = "title">${movieDetail.imdbVotes}</p>
-      <p class = "subtitle">IMDB Votes</p>
-    </article>
-  `;
-};
+//   return `
+//     <article class = "media">
+//       <figure class = "media-left">
+//         <p class = "image">
+//           <img src = "${movieDetail.Poster}" />
+//         </p>
+//       </figure>
+//       <div class = "content">
+//         <h1>${movieDetail.Title}</h1>
+//         <h4>${movieDetail.Genre}</h4>
+//         <p>${movieDetail.Plot}</p>
+//       </div>
+//     </article>
+//     <article data-value = "${awards}" class="notification is-primary">
+//       <p class = "title">${movieDetail.Awards}</p>
+//       <p class = "subtitle">Awards</p>
+//     </article>
+//     <article data-value = "${dollars}" class="notification is-primary">
+//       <p class = "title">${movieDetail.BoxOffice}</p>
+//       <p class = "subtitle">Box Office</p>
+//     </article>
+//     <article data-value = "${metascore}" class="notification is-primary">
+//       <p class = "title">${movieDetail.Metascore}</p>
+//       <p class = "subtitle">MetaScore</p>
+//     </article>
+//     <article data-value = "${imdbRating}" class="notification is-primary">
+//       <p class = "title">${movieDetail.imdbRating}</p>
+//       <p class = "subtitle">IMDB Rating</p>
+//     </article>
+//     <article data-value = "${imdbVotes}" class="notification is-primary">
+//       <p class = "title">${movieDetail.imdbVotes}</p>
+//       <p class = "subtitle">IMDB Votes</p>
+//     </article>
+//   `;
+// };
 
 // const test = async (searchTerm) => {
 //   const response = await axios.get("http://www.omdbapi.com/", {
@@ -240,11 +284,6 @@ const movieTemplate = (movieDetail) => {
 //   console.log(response.data)
 //   return response.data;
 // }
-
-
-
-
-
 
 // TOP PICK FILMS GENERATOR
 // let topPickFilms = ['Interstellar', 'inception', 'Django Unchained', '1917'];

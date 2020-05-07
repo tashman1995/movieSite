@@ -415,10 +415,13 @@
     justify-content: space-between;
     position: absolute;
     top: 0;
-    transition: all .2s ease-in-out;
+    transition: all 1s ease-out;
 
-    &--selected {
-      transform: translateX(150%);
+    &--moveLeft {
+      transform: translateX(105%);
+    }
+    &--moveRight {
+      transform: translateX(-105%);
     }
 		
 	}

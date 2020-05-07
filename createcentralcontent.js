@@ -55,7 +55,7 @@ const createSuggestions = (showTypes) => {
   const suggestionHeadings = document.createElement("div");
   suggestionHeadings.classList.add("suggestions__headings");
   suggestionHeadings.innerHTML = `
-        <div class="suggestions__heading" id = 'tvSuggestionsBtn'>
+        <div class="suggestions__heading" id = 'tvShowSuggestionsBtn'>
             <h2 class="secondary-heading">
             Tv Shows
             </h2>
@@ -68,28 +68,25 @@ const createSuggestions = (showTypes) => {
             <hr class="suggestions__hr">
     </div>
     `;
-    // const sugg
+  // const sugg
   const suggestionCards = document.createElement("div");
   suggestionCards.classList.add("suggestions__cards");
-  const suggestionCardsTvShows = document.createElement('div');
-  suggestionCardsTvShows.classList.add('suggestions__cards-container');
-  const suggestionCardsMovies = document.createElement('div');
-  suggestionCardsMovies.classList.add('suggestions__cards-container','suggestions__cards-container--selected');
 
-  for (show of showTypes[0]) {
-    let card = createLscapeCard(show);
-    suggestionCardsTvShows.appendChild(card);
+  const createCardContainer = (mediaArray) => {
+    const suggestionCardsContainer = document.createElement("div");
+    suggestionCardsContainer.classList.add("suggestions__cards-container");
+
+    for (media of mediaArray) {
+      let card = createLscapeCard(media);
+      suggestionCardsContainer.appendChild(card);
+    }
+
+    return suggestionCardsContainer;
+  };
+
+  for (type of showTypes) {
+    suggestionCards.appendChild(createCardContainer(type));
   }
-
-  for (movie of showTypes[1]) {
-    let card = createLscapeCard(movie);
-    suggestionCardsMovies.appendChild(card);
-  }
-
-  suggestionCards.appendChild(suggestionCardsTvShows);
-  suggestionCards.appendChild(suggestionCardsMovies);
-
-
 
   const hr = document.createElement("hr");
   hr.classList.add("hr");
