@@ -2,6 +2,9 @@
 ////////////////////////////////////
 // UTILITIES
 ////////////////////////////////////
+.bottom-margin-xl {
+	margin-bottom: 4rem;
+}
 
 .bottom-margin-large {
 	margin-bottom: 2.4rem;
@@ -24,4 +27,12 @@
 .hidden {
 	opacity: 0;
 	visibility: hidden;
+}
+
+.align-right {
+	text-align: right;
+}
+
+.two-column {
+	column-count: 2;
 }

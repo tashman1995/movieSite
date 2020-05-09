@@ -20,28 +20,40 @@ const createAutoComplete = ({
         <div class = "results">
         </div>
         `;
+
+      resultsWrapper = root.querySelector(".results");
     }
 
-    resultsWrapper = root.querySelector(".results");
+    
+    resultsWrapper.innerHTML = "";
 
     if (!results.length && centralContentStatus === "search") {
-      resultsWrapper.innerHTML = "";
+      
 
       checkStatusUpdateContent("home");
       return;
     }
 
     for (let result of results) {
-      const option = document.createElement("div");
+      // if(result.Poster && result.Poster != "N/A"){
+  
+        const option = document.createElement("div");
 
-      option.classList.add("card");
-      option.innerHTML = renderOption(result);
-      option.addEventListener("click", () => {
-        searchInput.value = inputValue(result);
-        onOptionSelect(result);
-      });
+        option.classList.add("results-card");
+        option.innerHTML = renderOption(result);
+        option.addEventListener("click", () => {
+          searchInput.value = inputValue(result);
+          onOptionSelect(result);
+        });
 
-      resultsWrapper.appendChild(option);
+        option.addEventListener('click', () => {
+          // console.log(this.imdbID)
+          onShowSelect(result.imdbID)
+        });
+
+        resultsWrapper.appendChild(option);
+      // }
+ 
     }
   };
 

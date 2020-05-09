@@ -5,6 +5,10 @@
 	line-height: 1;
 	font-size: 3.8rem;
 	font-weight: 700;
+
+	&--show {
+		font-size: 4.5rem;
+	}
 }
 
 .secondary-heading {
@@ -23,6 +27,14 @@
 	font-size: 1.6rem;
 	line-height: 1;
 	font-weight: 400;
+
+}
+
+.fifth-heading {
+	font-size: 1.4rem;
+	line-height: 1;
+	font-weight: 400;
+	text-align: center;
 
 }
 

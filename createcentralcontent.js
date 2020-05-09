@@ -1,11 +1,16 @@
-const createCentralContent = () => {
-  const container = document.createElement("div");
-  container.classList.add("central-content__container");
+const createCentralContent = (container) => {
+
   const baseImg = createBaseImg(darkKnight);
   const suggestions = createSuggestions([tvShows, movies]);
 
   container.appendChild(baseImg);
   container.appendChild(suggestions);
+
+  const moreInfoBtn = document.getElementById('learnMore');
+  moreInfoBtn.addEventListener('click', () => {
+    console.log(darkKnight.imdbID)
+    onShowSelect(darkKnight.imdbID)
+  })
 
   return container;
 };
@@ -34,7 +39,7 @@ const createBaseImg = (filmData) => {
                 ${filmData.plot}
                 </div>
                 <div class="base__ctas">
-                <button class="colour-btn">Learn More</button>
+                <button class="colour-btn" id = "learnMore">Learn More</button>
                 <div class="base__play-trailer">
                     <!-- <a href="#" class="base__play-link">
                     Play Trailer

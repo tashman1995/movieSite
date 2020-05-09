@@ -1,31 +1,75 @@
 let centralContentStatus = "home";
-const centralContent = document.querySelector(".central-content");
+
+const homeContent = document.getElementById('homeContent');
+const searchResults = document.getElementById('searchResults');
+const showDisplay = document.getElementById('showDisplay')
 
 // MOVIES AND TV FILM SUGGESTIONS
 
-centralContentHome = createCentralContent();
+centralContentHome = createCentralContent(homeContent);
 
 const checkStatusUpdateContent = (status) => {
   centralContentStatus = status;
-  if ((centralContentStatus === "home")) {
-    centralContent.appendChild(centralContentHome);
-    centralContent.classList.remove('hidden')
-  } else if ((centralContentStatus === "search")) {
-    centralContent.classList.add("hidden");
+  if (centralContentStatus === "home") {
+    homeContent.classList.remove('hidden');
+    searchResults.classList.add('hidden');
+    showDisplay.classList.add('hidden');
+  } else if (centralContentStatus === "search") {
+    searchResults.classList.remove('hidden');
+    homeContent.classList.add("hidden");
+    showDisplay.classList.add('hidden');
+  } else if (centralContentStatus === "show") {
+    homeContent.classList.add('hidden');
+    searchResults.classList.add('hidden');
+    showDisplay.classList.remove('hidden');
   }
 };
 
 checkStatusUpdateContent(centralContentStatus);
 
+// SELECTED SHOW DISPLAY
+
+
+
+const onShowSelect = async (imdbID) => {
+  // console.log(imdbID)
+  const response = await axios.get("http://www.omdbapi.com/", {
+    params: {
+      apikey: "1ff2c261",
+      i: imdbID,
+    },
+  });
+
+  console.log(response.data)
+
+  showDisplay.innerHTML = showTemplate(response.data);
+
+  checkStatusUpdateContent('show');
+
+};
+
+
+
+
+
 //AUTO COMPLETE
 
 const autoCompleteConfig = {
   // What renders for each result
-  renderOption(movie) {
-    const imgSrc = movie.Poster === "N/A" ? "" : movie.Poster;
+  renderOption(show) {
+    const imgSrc = show.Poster === "N/A" ? "https://www.wildhareboca.com/wp-content/uploads/sites/310/2018/03/image-not-available.jpg" : show.Poster;
+    const showType = show.Type === 'movie' ? 'Film' : 'Tv Show';
     return `
-    <img class = "card__img" src = "${imgSrc}"/>
-    <h3 class = "card__title">${movie.Title}</h3>
+    <div class = "results-card__img-container">
+      <img src="${imgSrc}" alt="" class="results-card__img bottom-margin-small">
+      <div class="lscape-card__details">
+        <h4 class="fourth-header bottom-margin-smaller">${show.Title}</h4>
+        <div class="lscape-card__sub-details">
+            <p class="sub-paragraph sub-paragraph--faded all-caps">${showType}</p>
+            <p class="sub-paragraph sub-paragraph--faded all-caps">${show.Year}</p>
+        </div>
+      </div>
+    </div>
     `;
   },
 
@@ -64,12 +108,12 @@ const checkIfInputValue = () => {
 createAutoComplete({
   ...autoCompleteConfig,
   // Element to put results in
-  root: document.querySelector(".search-results__container"),
+  root: document.querySelector("#searchResults"),
 
   searchInput: searchInput,
   // What happens when a movie is selected
   onOptionSelect(movie) {
-    document.querySelector(".tutorial").classList.add("is-hidden");
+    // document.querySelector(".tutorial").classList.add("is-hidden");
   },
 });
 
@@ -138,6 +182,8 @@ const switchSuggestions = (e) => {
     tvShowSuggestionsBtn.classList.remove("suggestions__heading--not-selected");
   }
 };
+
+
 
 //ADD EVENT LISTENERS
 moviesSuggestionsBtn.addEventListener("click", switchSuggestions);

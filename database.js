@@ -50,7 +50,8 @@ const movies = [
 ]
 
 const darkKnight = {
-    title: 'Dark Knight',
+    title: 'The Dark Knight',
+    imdbID: 'tt0468569',
     ageRating: '12A',
     genre: 'Action, Thriller',
     rating: '9.0/10',
