@@ -2,7 +2,12 @@ let centralContentStatus = "home";
 
 const homeContent = document.getElementById('homeContent');
 const searchResults = document.getElementById('searchResults');
-const showDisplay = document.getElementById('showDisplay')
+const showDisplay = document.getElementById('showDisplay');
+const homeBtn = document.getElementById('home-btn');
+const randomBtn = document.getElementById('random-btn');
+const compareBtn = document.getElementById('compare-btn');
+const searchBtn = document.getElementById('search-btn');
+const lscapeCardImages = document.querySelectorAll('.lscape-card__img')
 
 // MOVIES AND TV FILM SUGGESTIONS
 
@@ -29,8 +34,6 @@ checkStatusUpdateContent(centralContentStatus);
 
 // SELECTED SHOW DISPLAY
 
-
-
 const onShowSelect = async (imdbID) => {
   // console.log(imdbID)
   const response = await axios.get("http://www.omdbapi.com/", {
@@ -47,9 +50,6 @@ const onShowSelect = async (imdbID) => {
   checkStatusUpdateContent('show');
 
 };
-
-
-
 
 
 //AUTO COMPLETE
@@ -189,6 +189,10 @@ const switchSuggestions = (e) => {
 moviesSuggestionsBtn.addEventListener("click", switchSuggestions);
 tvShowSuggestionsBtn.addEventListener("click", switchSuggestions);
 searchInput.addEventListener("input", checkIfInputValue);
+homeBtn.addEventListener('click', () => {
+  checkStatusUpdateContent('home');
+  searchInput.value = '';
+})
 
 // createAutoComplete({
 //   ...autoCompleteConfig,

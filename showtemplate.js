@@ -1,8 +1,25 @@
 const showTemplate = (show) => {
-    const showRatings1 = show.Ratings[0].Value.split('/', 1);
-    const showRatings2 = show.Ratings[1].Value.split('%', 1);
-    const showRatings3 = show.Ratings[2].Value.split('/', 1);
-    const showGenre = show.Genre.split(',', 3);
+  let showRatings1 = 'N/A';
+  let showRatings2 = 'N/A';
+  let showRatings3 = 'N/A';
+  let showSpecificData = ''
+  if(show.Ratings[0]){
+    showRatings1 = show.Ratings[0].Value.split('/', 1);
+  } 
+  if(show.Ratings[1]){
+    showRatings2 = show.Ratings[1].Value.split('%', 1);
+  } 
+  if(show.Ratings[2]){
+    showRatings3 = show.Ratings[2].Value.split('/', 1);
+  } 
+
+  if(show.Type === 'series') {
+    showSpecificData = `${show.totalSeasons} Seasons,    ${show.Year}`
+  } else if (show.Type === 'movie') {
+    showSpecificData = `Box Office: ${show.BoxOffice}`
+  }
+
+  const showGenre = show.Genre.split(',', 3);
 
 
 return `<div class="show">
@@ -76,19 +93,18 @@ return `<div class="show">
         <p class="show__paragraph bottom-margin">${show.Plot}</p>
       </div>
       <hr class="hr bottom-margin">
-        <p class="show__paragraph bottom-margin">Box Office: ${show.BoxOffice}</p>
+        <p class="show__paragraph bottom-margin">${showSpecificData}</p>
       <hr class="hr bottom-margin">
         <p class="show__paragraph bottom-margin">${show.Awards}</p>
       <hr class="hr bottom-margin">
       <div class="show__people-involved">
         <p class="two-column">
           
-          <span class="show__paragraph show__paragraph--bold">Director:</span>
-          <span class="show__paragraph">${show.Director}</span>
-          <span class="show__paragraph show__paragraph--bold">Cast:</span>
-          <span class="show__paragraph ">${show.Actors}</span>
-          <span class="show__paragraph show__paragraph--bold">Writers:</span>
-          <span class="show__paragraph">${show.Writer}</span>
+          <span class="show__paragraph"><span class="show__paragraph show__paragraph--bold">Director:&nbsp;&nbsp;&nbsp;</span>${show.Director}</span>
+          
+          <span class="show__paragraph"><span class="show__paragraph show__paragraph--bold">Cast:&nbsp;&nbsp;&nbsp;</span>${show.Actors}</span>
+
+          <span class="show__paragraph"><span class="show__paragraph show__paragraph--bold">Writers:&nbsp;&nbsp;&nbsp;</span>${show.Writer}</span>
         </p>
       </div>
 

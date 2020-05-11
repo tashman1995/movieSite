@@ -6,11 +6,20 @@ const createCentralContent = (container) => {
   container.appendChild(baseImg);
   container.appendChild(suggestions);
 
+
   const moreInfoBtn = document.getElementById('learnMore');
   moreInfoBtn.addEventListener('click', () => {
-    console.log(darkKnight.imdbID)
     onShowSelect(darkKnight.imdbID)
   })
+
+  const cardImages = document.querySelectorAll('.lscape-card__img');
+  cardImages.forEach((image) => {
+    image.addEventListener('click', () => {
+      onShowSelect(image.dataset.id);
+    })
+  })
+
+  
 
   return container;
 };
@@ -107,14 +116,15 @@ const createLscapeCard = (show) => {
   const card = document.createElement("div");
   card.classList.add("lscape-card");
   card.innerHTML = `
-        <img src="${show.poster}" alt="" class="lscape-card__img bottom-margin-small">
+        <img data-id = "${show.imdbID}" src="${show.poster}" alt="" class="lscape-card__img bottom-margin-small">
         <div class="lscape-card__details">
-        <h4 class="fourth-header bottom-margin-smaller">${show.title}</h4>
+        <h4 data-id = "${show.imdbID}" class="fourth-header bottom-margin-smaller">${show.title}</h4>
         <div class="lscape-card__sub-details">
             <p class="sub-paragraph sub-paragraph--faded all-caps">${show.genre}</p>
             <p class="sub-paragraph sub-paragraph--faded all-caps">${show.rating}/10</p>
         </div>
         </div>            
     `;
+
   return card;
 };

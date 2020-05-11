@@ -19,6 +19,10 @@ Single-colored icons can be modified like so:
   width: 1.0714285714285714em;
 }
 
+.icon-home {
+  width: 0.9285714285714285em;
+}
+
 .icon-television {
   width: 1.0714285714285714em;
 }

@@ -86,18 +86,100 @@
   }
 }
 
+//////////////////////////////////////////
+// SIDE BAR 
+/////////////////////////////////////////
+
 .side-bar {
   &__logo {
-    margin: 2rem auto;
+    margin: 2rem 2px 2rem 0;
     text-align: center;
-    font-size: 2.7rem;
+    font-size: 2.2rem;
     line-height: 1;
     font-family: "Montserrat", sans-serif;
     &--bold {
       font-weight: 900;
-      font-size: 2.8rem;
+      font-size: 2.3rem;
+    }
+
+  }
+
+  &__icons-container {
+    margin-top: 8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__icon-container {
+    display: flex;
+    flex-direction: column;
+
+    &:nth-child(3) > .side-bar__icon{
+      transform: rotate(90deg);
+    }
+
+    &:not(:last-child){
+      margin-bottom: 6rem;
     }
   }
+
+  &__icon {
+    cursor: pointer;
+    height: 3.2rem;
+    width: 3.2rem;
+    fill: $color-white;
+    opacity: 60%;
+    transition: all .2s ease-in;
+    // transition: transform .2s ease-in;
+    
+
+
+    &:hover {
+      // transform: scale(1.1);
+      opacity: 100%;
+
+      & + .side-bar__hr {
+        width: 2rem;
+        visibility: visible;
+        
+      }
+    }
+
+    &--selected {
+      opacity: 100%;
+
+      &:hover {
+        transform: scale(1);
+
+
+      }
+    }
+  }
+  
+    &__hr {
+    width: 2rem;
+    margin: .5rem auto 1.5rem;
+    text-align: center;
+    border: 1px solid $color-primary;
+    transition: all .6s;
+
+    &--hidden {
+      width: 0;
+      visibility: hidden;
+    }
+  }
+}
+
+#random-btn {
+  height: 2.7rem;
+  width: 2.7rem;
+}
+
+
+#search-btn {
+  height: 2.4rem;
+  width: 2.4rem;
 }
 
 .dropdown {
@@ -516,10 +598,11 @@
   &__paragraph {
     font-size: 1.6rem;
     line-height: 3.2rem;
+    display: inline-block;
 
     &--bold {
       font-weight: bold;
-      display: block;
+      // display: block;
     }
     
   }

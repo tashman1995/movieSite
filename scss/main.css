@@ -38,7 +38,7 @@ body {
 .side-bar {
   background-color: #131313;
   height: 100vh;
-  width: 16rem;
+  width: 11rem;
   position: fixed;
 }
 
@@ -237,16 +237,101 @@ body {
 }
 
 .side-bar__logo {
-  margin: 2rem auto;
+  margin: 2rem 2px 2rem 0;
   text-align: center;
-  font-size: 2.7rem;
+  font-size: 2.2rem;
   line-height: 1;
   font-family: "Montserrat", sans-serif;
 }
 
 .side-bar__logo--bold {
   font-weight: 900;
-  font-size: 2.8rem;
+  font-size: 2.3rem;
+}
+
+.side-bar__icons-container {
+  margin-top: 8rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.side-bar__icon-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.side-bar__icon-container:nth-child(3) > .side-bar__icon {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
+.side-bar__icon-container:not(:last-child) {
+  margin-bottom: 6rem;
+}
+
+.side-bar__icon {
+  cursor: pointer;
+  height: 3.2rem;
+  width: 3.2rem;
+  fill: #fff;
+  opacity: 60%;
+  -webkit-transition: all .2s ease-in;
+  transition: all .2s ease-in;
+}
+
+.side-bar__icon:hover {
+  opacity: 100%;
+}
+
+.side-bar__icon:hover + .side-bar__hr {
+  width: 2rem;
+  visibility: visible;
+}
+
+.side-bar__icon--selected {
+  opacity: 100%;
+}
+
+.side-bar__icon--selected:hover {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+
+.side-bar__hr {
+  width: 2rem;
+  margin: .5rem auto 1.5rem;
+  text-align: center;
+  border: 1px solid #00c1eb;
+  -webkit-transition: all .6s;
+  transition: all .6s;
+}
+
+.side-bar__hr--hidden {
+  width: 0;
+  visibility: hidden;
+}
+
+#random-btn {
+  height: 2.7rem;
+  width: 2.7rem;
+}
+
+#search-btn {
+  height: 2.4rem;
+  width: 2.4rem;
 }
 
 .dropdown {
@@ -738,11 +823,11 @@ body {
 .show__paragraph {
   font-size: 1.6rem;
   line-height: 3.2rem;
+  display: inline-block;
 }
 
 .show__paragraph--bold {
   font-weight: bold;
-  display: block;
 }
 
 .show__people-involved {
