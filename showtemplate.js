@@ -3,15 +3,19 @@ const showTemplate = (show) => {
   let showRatings2 = 'N/A';
   let showRatings3 = 'N/A';
   let showSpecificData = ''
-  if(show.Ratings[0]){
-    showRatings1 = show.Ratings[0].Value.split('/', 1);
-  } 
-  if(show.Ratings[1]){
-    showRatings2 = show.Ratings[1].Value.split('%', 1);
-  } 
-  if(show.Ratings[2]){
-    showRatings3 = show.Ratings[2].Value.split('/', 1);
-  } 
+
+  if(show.Ratings){
+    if(show.Ratings[0]){
+      showRatings1 = show.Ratings[0].Value.split('/', 1);
+    } 
+    if(show.Ratings[1]){
+      showRatings2 = show.Ratings[1].Value.split('%', 1);
+    } 
+    if(show.Ratings[2]){
+      showRatings3 = show.Ratings[2].Value.split('/', 1);
+    }
+  }
+ 
 
   if(show.Type === 'series') {
     showSpecificData = `${show.totalSeasons} Seasons,    ${show.Year}`

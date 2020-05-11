@@ -13,7 +13,7 @@ const createAutoComplete = ({
   const onInput = async (event) => {
     const results = await fetchData(event.target.value);
 
-    if (results.length > 0 && centralContentStatus === "home") {
+    if (results.length > 0 && centralContentStatus != 'search') {
       checkStatusUpdateContent("search");
 
       root.innerHTML = `
@@ -22,17 +22,14 @@ const createAutoComplete = ({
         `;
 
       resultsWrapper = root.querySelector(".results");
-    }
-
-    
-    resultsWrapper.innerHTML = "";
-
-    if (!results.length && centralContentStatus === "search") {
-      
-
-      checkStatusUpdateContent("home");
+    } else if (!results.length && centralContentStatus === "search") {
+      checkStatusUpdateContent("previous");
       return;
     }
+
+        
+    resultsWrapper.innerHTML = "";
+    
 
     for (let result of results) {
       // if(result.Poster && result.Poster != "N/A"){
