@@ -15,8 +15,7 @@
 .main {
   width: 100vw;
   height: 100vh;
-  
-  margin-left: 16rem;
+  margin-left: 11rem;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -28,19 +27,24 @@
   width: 100%;
 }
 
-@mixin centralContainer {
+
+.central-content {
   position: relative;
   flex-grow: 1;
-
+  display: flex;
+  flex-direction: column;
   height: 100%;
 
   &__container {
-    transition: all .2s ease-in;
+    transition: all 0.2s ease-in;
     width: 100%;
     height: 100%;
     position: absolute;
     top: 0;
-    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    // overflow-y: scroll;
 
     &::-webkit-scrollbar-track {
       display: none;
@@ -55,13 +59,6 @@
     }
   }
 }
-
-.central-content {
-  
-  // width: 100%;
-  @include centralContainer;
-}
-
 
 .top-picks {
   width: 33rem;
@@ -75,23 +72,35 @@
     padding: $content-padding;
     overflow: scroll;
 
-    &::-webkit-scrollbar-track {
-      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-      border-radius: 10px;
-      background-color: $color-bg-dark;
-    }
+    // &::-webkit-scrollbar-track {
+    //   display: none;
+    // }
 
-    &::-webkit-scrollbar {
-      width: 12px;
-      background-color: $color-bg-dark;
-    }
+    // &::-webkit-scrollbar {
+    //   display: none;
+    // }
 
-    &::-webkit-scrollbar-thumb {
-      border-radius: 10px;
-      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-      background-color: #555;
-      opacity: 0;
-    }
+    // &::-webkit-scrollbar-thumb {
+    //   display: none;
+    // }
+
+    // &::-webkit-scrollbar-track {
+    //   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    //   border-radius: 10px;
+    //   background-color: $color-bg-dark;
+    // }
+
+    // &::-webkit-scrollbar {
+    //   width: 12px;
+    //   background-color: $color-bg-dark;
+    // }
+
+    // &::-webkit-scrollbar-thumb {
+    //   border-radius: 10px;
+    //   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    //   background-color: #555;
+    //   opacity: 0;
+    // }
   }
 }
 
@@ -104,4 +113,5 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
   margin-top: $content-padding;
+  overflow-y: scroll;
 }

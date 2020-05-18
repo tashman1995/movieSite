@@ -9,13 +9,13 @@ const createCentralContent = (container) => {
 
   const moreInfoBtn = document.getElementById('learnMore');
   moreInfoBtn.addEventListener('click', () => {
-    onShowSelect(darkKnight.imdbID)
+    onShowSelect(darkKnight.imdbID, showDisplay)
   })
 
   const cardImages = document.querySelectorAll('.lscape-card__img');
   cardImages.forEach((image) => {
     image.addEventListener('click', () => {
-      onShowSelect(image.dataset.id);
+      onShowSelect(image.dataset.id, showDisplay);
     })
   })
 
