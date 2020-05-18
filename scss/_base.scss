@@ -19,9 +19,9 @@ $border-line: 1px $color-white solid;
 
 $content-padding: 3rem;
 
-$bp-largest: 75em; //1200 divided by 16
-$bp-large: 69.5em; //1100 divided by 16
-$bp-medium: 56.25em; //900 divided by 16
+$bp-largest: 87.5em; //1400 divided by 16
+$bp-large: 75em; //1200 divided by 16
+$bp-medium: 64em; //1024 divided by 16
 $bp-small: 37.5em; //600 divided by 16
 $bp-smallest: 31.25em; //500 divided by 16
 $bp-tiny: 25.62em; //410 divided by 16
@@ -40,6 +40,10 @@ $bp-tiny: 25.62em; //410 divided by 16
 html {
   box-sizing: border-box;
   font-size: 62.5%; //1rem is 10px
+
+  @media only screen and (max-width: $bp-large) {
+    font-size: 50%;
+  }
 }
 
 body {

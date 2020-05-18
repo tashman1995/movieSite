@@ -1,8 +1,9 @@
 .container {
   display: flex;
   position: relative;
-
   overflow: hidden;
+
+
 }
 
 .side-bar {
@@ -10,6 +11,8 @@
   height: 100vh;
   width: 11rem;
   position: fixed;
+
+
 }
 
 .main {
@@ -20,6 +23,7 @@
   flex-direction: column;
   position: relative;
 }
+
 
 .header {
   display: flex;

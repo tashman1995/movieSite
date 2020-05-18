@@ -18,6 +18,12 @@ html {
   font-size: 62.5%;
 }
 
+@media only screen and (max-width: 75em) {
+  html {
+    font-size: 50%;
+  }
+}
+
 body {
   font-family: "Lato", sans-serif;
   font-weight: 300;
@@ -477,7 +483,7 @@ body {
 }
 
 .base {
-  height: 40rem;
+  height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -492,7 +498,6 @@ body {
 .base__container {
   width: 100%;
   overflow: hidden;
-  height: 40rem;
   position: relative;
 }
 
@@ -503,6 +508,18 @@ body {
           filter: blur(2px);
   -webkit-filter: brightness(60%);
           filter: brightness(60%);
+}
+
+@media only screen and (max-width: 87.5em) {
+  .base__container {
+    height: 65rem;
+  }
+}
+
+@media only screen and (max-width: 75em) {
+  .base__container {
+    height: 70rem;
+  }
 }
 
 .base__img {
@@ -533,6 +550,13 @@ body {
   z-index: 2;
   background-image: -webkit-gradient(linear, left top, right top, from(rgba(246, 246, 246, 0)), color-stop(20%, rgba(0, 0, 0, 0.4)));
   background-image: linear-gradient(to right, rgba(246, 246, 246, 0) 0%, rgba(0, 0, 0, 0.4) 20%);
+}
+
+@media only screen and (max-width: 87.5em) {
+  .base__info {
+    padding: 0 4rem;
+    width: 40rem;
+  }
 }
 
 .base__sub-details {
