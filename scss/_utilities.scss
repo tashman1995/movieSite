@@ -37,3 +37,8 @@
 	column-count: 2;
 }
 
+.portrait-hidden {
+	@media only screen and (max-width: $bp-medium) {
+		display: none;
+	}
+}

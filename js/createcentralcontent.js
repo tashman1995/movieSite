@@ -1,25 +1,21 @@
 const createCentralContent = (container) => {
-
   const baseImg = createBaseImg(darkKnight);
   const suggestions = createSuggestions([tvShows, movies]);
 
   container.appendChild(baseImg);
   container.appendChild(suggestions);
 
+  const moreInfoBtn = document.getElementById("learnMore");
+  moreInfoBtn.addEventListener("click", () => {
+    onShowSelect(darkKnight.imdbID, showDisplay);
+  });
 
-  const moreInfoBtn = document.getElementById('learnMore');
-  moreInfoBtn.addEventListener('click', () => {
-    onShowSelect(darkKnight.imdbID, showDisplay)
-  })
-
-  const cardImages = document.querySelectorAll('.lscape-card__img');
+  const cardImages = document.querySelectorAll(".lscape-card__img");
   cardImages.forEach((image) => {
-    image.addEventListener('click', () => {
+    image.addEventListener("click", () => {
       onShowSelect(image.dataset.id, showDisplay);
-    })
-  })
-
-  
+    });
+  });
 
   return container;
 };
@@ -89,7 +85,6 @@ const createSuggestions = (showTypes) => {
   const createCardContainer = (mediaArray) => {
     const suggestionCardsContainer = document.createElement("div");
     suggestionCardsContainer.classList.add("suggestions__cards-container");
-
     for (media of mediaArray) {
       let card = createLscapeCard(media);
       suggestionCardsContainer.appendChild(card);
@@ -98,12 +93,24 @@ const createSuggestions = (showTypes) => {
     return suggestionCardsContainer;
   };
 
+  const hr = document.createElement("hr");
+  hr.classList.add("hr","portrait-hidden");
+
   for (type of showTypes) {
+    const showType = (type[0].type === 'movie') ? 'Movies' : 'Tv Shows' ;
+    // const showType = (type[0].type)
+    const titleForPortraitMode = document.createElement("div");
+    titleForPortraitMode.classList.add("suggestions__heading", "suggestions__heading--portrait");
+    titleForPortraitMode.innerHTML = `
+    <h2 class="secondary-heading ">${showType}</h2>
+    <hr class="suggestions__hr">
+    `;
+    suggestionCards.appendChild(titleForPortraitMode);
+    suggestionCards.appendChild(hr);
     suggestionCards.appendChild(createCardContainer(type));
   }
 
-  const hr = document.createElement("hr");
-  hr.classList.add("hr");
+ 
 
   suggestions.appendChild(suggestionHeadings);
   suggestions.appendChild(hr);

@@ -14,7 +14,7 @@ const filmCardImages = document.querySelectorAll(".film-card__info-backdrop");
 const compareSearchInputs = document.querySelectorAll(".search__input--compare");
 
 
-const userMenu = document.querySelector("#dropdown1");
+const userMenu = document.querySelector("#dropdownHeader");
 
 
 let centralContentStatus = "home";
