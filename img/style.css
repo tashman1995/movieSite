@@ -15,6 +15,10 @@ Single-colored icons can be modified like so:
 }
 ========================================== */
 
+.icon-user {
+  width: 0.7142857142857142em;
+}
+
 .icon-film {
   width: 1.0714285714285714em;
 }

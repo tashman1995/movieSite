@@ -9,21 +9,23 @@ const shuffleBtn = document.getElementById("random-btn");
 const compareBtn = document.getElementById("compare-btn");
 const searchBtn = document.getElementById("search-btn");
 const shufflePageBtn = document.getElementById("shufflePageBtn");
+const accountBtn = document.getElementById("account-btn");
+const navToggleBtn = document.getElementById("navigation-toggle");
+const navBar = document.querySelector(".side-bar");
+const cornerLogo = document.querySelector(".side-bar__logo");
+const userMenuNav = document.querySelector(".user-menu");
 const lscapeCardImages = document.querySelectorAll(".lscape-card__img");
 const filmCardImages = document.querySelectorAll(".film-card__info-backdrop");
-const compareSearchInputs = document.querySelectorAll(".search__input--compare");
-
-
+const compareSearchInputs = document.querySelectorAll(
+  ".search__input--compare"
+);
 const userMenu = document.querySelector("#dropdownHeader");
-
 
 let centralContentStatus = "home";
 let previousContentStatus = "home";
 
 checkStatusUpdateContent(centralContentStatus);
 centralContentHome = createCentralContent(homeContent);
-
-
 
 // SELECTED SHOW DISPLAY
 
@@ -47,7 +49,6 @@ const onShowSelect = async (imdbID, targetEl) => {
     checkStatusUpdateContent("shuffle");
   }
 };
-
 
 //AUTO COMPLETE
 
@@ -157,7 +158,9 @@ createDropdown({
 //////////////////////////////////////////////////
 // HOME PAGE HORIZONTAL SUGGESTIONS
 //////////////////////////////////////////////////
-const suggestionContainers = document.querySelectorAll(".suggestions__cards-container");
+const suggestionContainers = document.querySelectorAll(
+  ".suggestions__cards-container"
+);
 
 suggestionContainers[1].classList.add("suggestions__cards-container--moveLeft");
 const switchSuggestions = (e) => {
@@ -184,7 +187,6 @@ const switchSuggestions = (e) => {
   }
 };
 
-
 //////////////////////////////////////////////////
 // COMPARE AUTOCOMPLETES
 //////////////////////////////////////////////////
@@ -206,6 +208,22 @@ createAutoComplete({
 });
 
 //////////////////////////////////////////////////
+// TOGGLE NAV MENU
+//////////////////////////////////////////////////
+
+const toggleNavMenu = () => {
+  const viewportWidth =
+    window.innerWidth || document.documentElement.clientWidth;
+
+  if (viewportWidth <= 600) {
+    console.log(viewportWidth);
+    navToggleBtn.classList.toggle("side-bar__button--cross");
+    navBar.classList.toggle("side-bar--nav-open");
+    cornerLogo.classList.toggle("opacity-hidden");
+  }
+};
+
+//////////////////////////////////////////////////
 // BUTTON EVENT LISTENERS
 //////////////////////////////////////////////////
 const moviesSuggestionsBtn = document.querySelector("#movieSuggestionsBtn");
@@ -214,25 +232,39 @@ const tvShowSuggestionsBtn = document.querySelector("#tvShowSuggestionsBtn");
 moviesSuggestionsBtn.addEventListener("click", switchSuggestions);
 tvShowSuggestionsBtn.addEventListener("click", switchSuggestions);
 shufflePageBtn.addEventListener("click", randomSearch);
-shuffleBtn.addEventListener("click", () =>{
+shuffleBtn.addEventListener("click", () => {
   randomSearch();
   searchInput.value = "";
-} );
+  toggleNavMenu();
+});
 
 searchInput.addEventListener("input", checkIfInputValue);
 homeBtn.addEventListener("click", () => {
   checkStatusUpdateContent("home");
   searchInput.value = "";
+  toggleNavMenu();
 });
 
 compareBtn.addEventListener("click", () => {
   checkStatusUpdateContent("compare");
   searchInput.value = "";
+  toggleNavMenu();
 });
 
-searchBtn.addEventListener('click', () => {
-  checkStatusUpdateContent('search');
-})
+searchBtn.addEventListener("click", () => {
+  checkStatusUpdateContent("search");
+  toggleNavMenu();
+});
+
+accountBtn.addEventListener("click", () => {
+  userMenuNav.classList.add("user-menu--visible");
+});
+
+navToggleBtn.addEventListener("click", toggleNavMenu);
+
+cornerLogo.addEventListener("click", () => {
+  checkStatusUpdateContent("home");
+});
 
 // TOP PICKS EVENT LISTENER
 filmCardImages.forEach((card) => {

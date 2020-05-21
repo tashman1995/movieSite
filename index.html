@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
     <link rel="stylesheet" href="scss/main.css" />
   </head>
@@ -36,6 +38,24 @@
             </svg>
             <hr class="side-bar__hr">
           </div>
+          <div class="side-bar__icon-container" id="account-btn">
+            <svg class="side-bar__icon" >
+              <use xlink:href="img/sprite.svg#icon-user"></use>
+            </svg>
+            <hr class="side-bar__hr">
+          </div>
+        </div>
+        <label id="navigation-toggle" for="navi-toggle" class="side-bar__button">
+          <span class="side-bar__toggle-icon">
+            &nbsp;
+          </span>
+        </label>
+        <div class="user-menu">
+          <ul class="user-menu__options">
+            <li class="user-menu__option"><a>Account</a></li>
+            <li class="user-menu__option"><a>Pro Features</a></li>
+            <li class="user-menu__option"><a>Settings</a></li>
+            <li class="user-menu__option"><a>Log Out</a></li></ul>
         </div>
       </div>
 
@@ -65,8 +85,8 @@
             </div>
             <div class="central-content__container hidden" id="shuffleDisplay">
               <div class="page-title">
-                <hr class="hr bottom-margin">
-                <h1 class="primary-heading bottom-margin"> <span class = "light-weight">Database </span><span class = "primary-color-text">Shuffle</span><svg class="page-title__icon" id="shufflePageBtn">
+                <hr class="hr">
+                <h1 class="primary-heading primary-heading--title"> <span class = "light-weight">Database </span><span class = "primary-color-text">Shuffle</span><svg class="page-title__icon" id="shufflePageBtn">
                   <use xlink:href="img/sprite.svg#icon-shuffle"></use>
                 </svg></h1>
                 
@@ -79,8 +99,8 @@
             </div>
             <div class="central-content__container hidden" id="compareDisplay">
               <div class="page-title">
-                <hr class="hr bottom-margin">
-                <h1 class="primary-heading bottom-margin"> <span class = "light-weight">Database </span><span class = "primary-color-text">Comparison</span></h1>
+                <hr class="hr">
+                <h1 class="primary-heading primary-heading--title"> <span class = "light-weight">Database </span><span class = "primary-color-text">Comparison</span></h1>
                 
                 <hr class="hr bottom-margin">
               </div>

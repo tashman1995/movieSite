@@ -22,6 +22,7 @@ $content-padding: 3rem;
 $bp-largest: 87.5em; //1400 divided by 16
 $bp-large: 75em; //1200 divided by 16
 $bp-medium: 64em; //1024 divided by 16
+$bp-small-medium: 49em; //770 divided by 16
 $bp-small: 37.5em; //600 divided by 16
 $bp-tiny: 25.62em; //410 divided by 16
 
@@ -42,6 +43,15 @@ html {
 
   @media only screen and (max-width: $bp-large) {
     font-size: 50%;
+  }
+
+
+  @media only screen and (max-width: $bp-small-medium) {
+    font-size: 40%;
+  }
+  
+  @media only screen and (max-width: $bp-small) {
+    font-size: 30%;
   }
 }
 

@@ -8,9 +8,17 @@
 
 .bottom-margin-large {
 	margin-bottom: 2.4rem;
+
+	@media only screen and (max-width: $bp-medium) {
+		margin-bottom: 4rem;
+	  }
 }
 .bottom-margin {
 	margin-bottom: 1.6rem;
+
+	@media only screen and (max-width: $bp-small) {
+		margin-bottom: $content-padding;
+	  }
 }
 
 .bottom-margin-small {
@@ -35,10 +43,18 @@
 
 .two-column {
 	column-count: 2;
+
+	@media only screen and (max-width: $bp-medium) {
+		column-count: 1;
+	  }
 }
 
 .portrait-hidden {
 	@media only screen and (max-width: $bp-medium) {
 		display: none;
 	}
+}
+
+.opacity-hidden {
+	opacity: 0;
 }

@@ -15,12 +15,13 @@ const showTemplate = (show) => {
       showRatings3 = show.Ratings[2].Value.split('/', 1);
     }
   }
- 
+  
+  console.log(show)
 
   if(show.Type === 'series') {
-    showSpecificData = `${show.totalSeasons} Seasons,    ${show.Year}`
+    showSpecificData = `<span class = "show__paragraph--bold" >Duration:&nbsp;&nbsp;&nbsp;</span>${show.totalSeasons} Seasons,    ${show.Year}`
   } else if (show.Type === 'movie') {
-    showSpecificData = `Box Office: ${show.BoxOffice}`
+    showSpecificData = `<span class = "show__paragraph--bold"> Box Office:</span> ${show.BoxOffice}`
   }
 
   const showGenre = show.Genre.split(',', 3);
@@ -100,16 +101,16 @@ const showTemplate = (show) => {
     <hr class="hr bottom-margin">
       <p class="show__paragraph bottom-margin">${showSpecificData}</p>
     <hr class="hr bottom-margin">
-      <p class="show__paragraph bottom-margin">${show.Awards}</p>
+      <p class="show__paragraph bottom-margin"><span class = "show__paragraph--bold" >Awards:</span> ${show.Awards}</p>
     <hr class="hr bottom-margin">
     <div class="show__people-involved">
       <p class="two-column">
         
-        <span class="show__paragraph"><span class="show__paragraph show__paragraph--bold">Director:&nbsp;&nbsp;&nbsp;</span>${show.Director}</span>
+        <span class="show__paragraph"><span class=" show__paragraph--bold">Director:&nbsp;&nbsp;&nbsp;</span>${show.Director}</span>
         
-        <span class="show__paragraph"><span class="show__paragraph show__paragraph--bold">Cast:&nbsp;&nbsp;&nbsp;</span>${show.Actors}</span>
+        <span class="show__paragraph"><span class=" show__paragraph--bold">Cast:&nbsp;&nbsp;&nbsp;</span>${show.Actors}</span>
 
-        <span class="show__paragraph"><span class="show__paragraph show__paragraph--bold">Writers:&nbsp;&nbsp;&nbsp;</span>${show.Writer}</span>
+        <span class="show__paragraph"><span class=" show__paragraph--bold">Writers:&nbsp;&nbsp;&nbsp;</span>${show.Writer}</span>
       </p>
     </div>
 
