@@ -5,6 +5,8 @@ const checkStatusUpdateContent = (status) => {
     } else {
       centralContentStatus = previousContentStatus;
     }
+
+    // const statusArr = ['home', 'search', 'show', 'sh']
   
     if (centralContentStatus === "home") {
       homeContent.classList.remove("hidden");
@@ -42,8 +44,6 @@ const checkStatusUpdateContent = (status) => {
       shuffleBtn.classList.remove("side-bar__icon-container--selected");
       compareBtn.classList.remove("side-bar__icon-container--selected");
       searchBtn.classList.add("side-bar__icon-container--selected");
-  
-
   
     } else if (centralContentStatus === "shuffle") {
       homeContent.classList.add("hidden");

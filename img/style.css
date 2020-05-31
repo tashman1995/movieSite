@@ -23,8 +23,16 @@ Single-colored icons can be modified like so:
   width: 1.0714285714285714em;
 }
 
+.icon-th-large {
+  width: 0.9285714285714285em;
+}
+
 .icon-home {
   width: 0.9285714285714285em;
+}
+
+.icon-expand {
+  width: 0.8571428571428571em;
 }
 
 .icon-television {

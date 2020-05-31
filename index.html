@@ -76,7 +76,13 @@
             </button>
           </form>
 
-          <div class="dropdown" id="dropdownHeader"></div>
+          <div class="grid-slider hidden">
+            <svg class="grid-slider__icon">
+              <use xlink:href="img/sprite.svg#icon-expand"></use>
+            </svg>
+            <input class="slider" id="grid-slider" min="10" max="26" type="range" value="20" step="2">
+          </div>
+
         </div>    
           <div class="central-content">
             <div class="central-content__container" id="homeContent"></div>

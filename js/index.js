@@ -13,13 +13,13 @@ const accountBtn = document.getElementById("account-btn");
 const navToggleBtn = document.getElementById("navigation-toggle");
 const navBar = document.querySelector(".side-bar");
 const cornerLogo = document.querySelector(".side-bar__logo");
-const userMenuNav = document.querySelector(".user-menu");
+
 const lscapeCardImages = document.querySelectorAll(".lscape-card__img");
 const filmCardImages = document.querySelectorAll(".film-card__info-backdrop");
 const compareSearchInputs = document.querySelectorAll(
   ".search__input--compare"
 );
-const userMenu = document.querySelector("#dropdownHeader");
+
 
 let centralContentStatus = "home";
 let previousContentStatus = "home";
@@ -122,40 +122,6 @@ createAutoComplete({
 });
 
 //////////////////////////////////////////////////
-// USER MENU DROP DOWN
-//////////////////////////////////////////////////
-
-const labelContent = `<img src="img/icon.jpg" class="dropdown__img">
-<span class="dropdown__text">Tashman<span class = " dropdown__text--blue">1995</span></span>
-<svg class="dropdown__icon">
-  <use xlink:href="img/sprite.svg#icon-chevron-thin-down"> </use>
-</svg>`;
-
-createDropdown({
-  dropdownElement: userMenu,
-  labelContent: labelContent,
-  options: ["Account", "Pro Features", "Settings", "Log Out"],
-  onToggle(options) {
-    const optionsElements = options.querySelectorAll(".dropdown__option");
-    options.classList.toggle("dropdown__options--show");
-    for (option of optionsElements) {
-      option.classList.toggle("dropdown__option--show");
-    }
-    const icon = document.querySelector(".dropdown__icon");
-    icon.classList.toggle("dropdown__icon--rotated");
-  },
-  hideOptionsEl(options) {
-    const optionsElements = options.querySelectorAll(".dropdown__option");
-    options.classList.remove("dropdown__options--show");
-    for (option of optionsElements) {
-      option.classList.remove("dropdown__option--show");
-    }
-    const icon = document.querySelector(".dropdown__icon");
-    icon.classList.remove("dropdown__icon--rotated");
-  },
-});
-
-//////////////////////////////////////////////////
 // HOME PAGE HORIZONTAL SUGGESTIONS
 //////////////////////////////////////////////////
 const suggestionContainers = document.querySelectorAll(
@@ -222,6 +188,17 @@ const toggleNavMenu = () => {
     cornerLogo.classList.toggle("opacity-hidden");
   }
 };
+
+//////////////////////////////////////////////////
+// RESULTS CARD SLIDER
+//////////////////////////////////////////////////
+
+document.getElementById('grid-slider').addEventListener('input', (event) => {
+  console.log(event.target.value)
+  const resultsGrid = document.querySelector('.results');
+  resultsGrid.style['grid-template-columns'] = `repeat(auto-fit, minmax(${event.target.value.toString()}rem, 1fr))`;
+  console.log(`repeat(auto-fit, minmax(${event.target.value}rem, 1fr))`);
+})
 
 //////////////////////////////////////////////////
 // BUTTON EVENT LISTENERS
