@@ -1,0 +1,139 @@
+
+.dropdown {
+  margin-left: auto;
+  font-size: 1.6rem;
+  position: relative;
+  width: 22.4rem;
+  z-index: 1000;
+
+  @media only screen and (max-width: $bp-medium) {
+    width: 28rem;
+    margin-top: -2rem;
+    font-size: 3rem;
+    
+  }
+
+  &__label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $color-bg;
+    border: $border-line;
+    padding: 0.5rem 2rem 0.5rem 6rem;
+    border-radius: 100rem;
+    cursor: pointer;
+    z-index: 10;
+
+    @media only screen and (max-width: $bp-medium) {
+      padding: 1rem 2rem;
+      
+    }
+  }
+
+  &__text {
+    font-size: 1.8rem;
+    z-index: 10;
+
+    &--blue {
+      color: $color-primary;
+    }
+
+    @media only screen and (max-width: $bp-medium) {
+      font-size: 3rem;
+      
+    }
+  }
+
+  &__img {
+    position: absolute;
+    border: $border-line;
+    left: 0px;
+    height: 5rem;
+    border-radius: 100rem;
+    z-index: 10;
+    @media only screen and (max-width: $bp-medium) {
+      height: 6rem;
+      left: -0.6rem;
+    }
+  }
+
+  &__icon {
+    height: 1.8rem;
+    width: 1.8rem;
+    fill: $color-white;
+    margin-left: 1rem;
+    z-index: 10;
+    transition: transform 0.2s;
+
+    &--rotated {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__options {
+    position: absolute;
+    list-style-type: none;
+    top: 0rem;
+    left: 2.4rem;
+    right: 0;
+    margin-top: 2.4rem;
+    padding: 2.3rem 1rem 1.5rem 3.8rem;
+    border: $border-line;
+    border-top: transparent;
+    border-bottom-left-radius: 2.4rem;
+    border-bottom-right-radius: 2.4rem;
+    background-color: $color-bg;
+    transition: height 0.2s ease;
+    transform: translateY(1);
+    height: 0;
+    visibility: hidden;
+    // display: none;
+
+    @media only screen and (max-width: $bp-medium) {
+      padding: 3.2rem 1rem 1.5rem 3.8rem;
+    }
+
+    &--show {
+      // margin-top: 2.4rem;
+      visibility: visible;
+      transform: translateY(0);
+      height: 19.5rem;
+
+      @media only screen and (max-width: $bp-medium) {
+        height: 25rem;
+      }
+    }
+  }
+
+  &__option {
+    text-decoration: none;
+    opacity: 0;
+    transition: all 1s;
+    transition-delay: 0.2s;
+    visibility: hidden;
+
+    &:not(:last-child) {
+      margin-bottom: 1.5rem;
+    }
+
+    & a {
+      cursor: pointer;
+      text-decoration: none;
+      color: $color-grey-light-1;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: lighter;
+      transition: all 0.2s;
+
+      &:hover {
+        color: $color-primary;
+        transform: scale(1.02);
+      }
+    }
+
+    &--show {
+      visibility: visible;
+      opacity: 100%;
+    }
+  }
+}

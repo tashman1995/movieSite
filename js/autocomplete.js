@@ -30,6 +30,7 @@ const createAutoComplete = ({
     if(resultsWrapper){
       resultsWrapper.innerHTML = "";
     }
+
     
     for (let result of results) {
       // if(result.Poster && result.Poster != "N/A"){
@@ -46,7 +47,13 @@ const createAutoComplete = ({
       });
 
       resultsWrapper.appendChild(option);
-      // }
+      
+    }
+
+    // SEARCH RESULTS GRID SIZE MANAGEMENT
+
+    if(status === "search") {
+      updateGridSize(gridSlider.value.toString())
     }
   };
 
@@ -65,8 +72,6 @@ const createAutoComplete = ({
   
   });
   
-
-
   searchInput.addEventListener("input", debounce(onInput, 500));
 
 };

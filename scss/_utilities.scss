@@ -1,60 +1,59 @@
-
 ////////////////////////////////////
 // UTILITIES
 ////////////////////////////////////
 .bottom-margin-xl {
-	margin-bottom: 4rem;
+  margin-bottom: 4rem;
 }
 
 .bottom-margin-large {
-	margin-bottom: 2.4rem;
+  margin-bottom: 2.4rem;
 
-	@media only screen and (max-width: $bp-medium) {
-		margin-bottom: 4rem;
-	  }
+  @media only screen and (max-width: $bp-medium) {
+    margin-bottom: 4rem;
+  }
 }
 .bottom-margin {
-	margin-bottom: 1.6rem;
+  margin-bottom: 1.6rem;
 
-	@media only screen and (max-width: $bp-small) {
-		margin-bottom: $content-padding;
-	  }
+  @media only screen and (max-width: $bp-small) {
+    margin-bottom: $content-padding;
+  }
 }
 
 .bottom-margin-small {
-	margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 .bottom-margin-smaller {
-	margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
 
 .all-caps {
-	text-transform: uppercase;
+  text-transform: uppercase;
 }
 
 .hidden {
-	opacity: 0;
-	visibility: hidden;
+  opacity: 0;
+  visibility: hidden;
 }
 
 .align-right {
-	text-align: right;
+  text-align: right;
 }
 
 .two-column {
-	column-count: 2;
+  column-count: 2;
 
-	@media only screen and (max-width: $bp-medium) {
-		column-count: 1;
-	  }
+  @media only screen and (max-width: $bp-medium) {
+    column-count: 1;
+  }
 }
 
 .portrait-hidden {
-	@media only screen and (max-width: $bp-medium) {
-		display: none;
-	}
+  @media only screen and (max-width: $bp-medium) {
+    display: none;
+  }
 }
 
 .opacity-hidden {
-	opacity: 0;
+  opacity: 0;
 }

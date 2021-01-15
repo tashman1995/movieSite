@@ -1,0 +1,46 @@
+
+.page-title {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin: 0 $content-padding;
+  text-align: center;
+  position: relative;
+
+  &__icon {
+    fill: $color-white;
+    height: 4rem;
+    width: 4rem;
+    margin: auto 0 auto 8rem;
+    right: 4rem;
+    transition: all 0.5s ease-out;
+
+    cursor: pointer;
+
+    &:hover {
+      fill: $color-primary;
+      transform: translateY(-2px);
+    }
+
+    &:focus {
+      transform: translateY(0);
+    }
+
+    @media only screen and (max-width: $bp-medium) {
+      height: 7rem;
+      width: 7rem;
+      margin-left: 2* $content-padding;
+      // top: 6px;
+    }
+    @media only screen and (max-width: $bp-small-medium) {
+      // top: 6px;
+      height: 6rem;
+      width: 6rem;
+     
+    }
+    @media only screen and (max-width: $bp-small) {
+      // top: 4px;
+     
+    }
+  }
+}

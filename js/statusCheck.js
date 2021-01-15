@@ -1,72 +1,52 @@
-const checkStatusUpdateContent = (status) => {
-    if (status != "previous") {
+const checkStatusUpdateContent = (newStatus) => {
+    if (newStatus != "previous") {
       previousContentStatus = centralContentStatus;
-      centralContentStatus = status;
+      centralContentStatus = newStatus;
     } else {
       centralContentStatus = previousContentStatus;
     }
 
-    // const statusArr = ['home', 'search', 'show', 'sh']
-  
-    if (centralContentStatus === "home") {
-      homeContent.classList.remove("hidden");
-      searchResults.classList.add("hidden");
-      showDisplay.classList.add("hidden");
-      shuffleDisplay.classList.add("hidden");
-      compareDisplay.classList.add("hidden");
-  
-      homeBtn.classList.add("side-bar__icon-container--selected");
-      shuffleBtn.classList.remove("side-bar__icon-container--selected");
-      compareBtn.classList.remove("side-bar__icon-container--selected");
-      searchBtn.classList.remove("side-bar__icon-container--selected");
+    const statusArr = [{
+      name: 'home',
+      element: homeContent,
+      button: homeBtn
+    },
 
-    } else if (centralContentStatus === "search") {
-      searchResults.classList.remove("hidden");
-      homeContent.classList.add("hidden");
-      showDisplay.classList.add("hidden");
-      shuffleDisplay.classList.add("hidden");
-      compareDisplay.classList.add("hidden");
-  
-      homeBtn.classList.remove("side-bar__icon-container--selected");
-      shuffleBtn.classList.remove("side-bar__icon-container--selected");
-      compareBtn.classList.remove("side-bar__icon-container--selected");
-      searchBtn.classList.add("side-bar__icon-container--selected");
-  
-  
-    } else if (centralContentStatus === "show") {
-      homeContent.classList.add("hidden");
-      searchResults.classList.add("hidden");
-      showDisplay.classList.remove("hidden");
-      shuffleDisplay.classList.add("hidden");
-      compareDisplay.classList.add("hidden");
+    {
+      name: 'show',
+      element: showDisplay,
+      button: searchBtn
+    },
+    {
+      name: 'shuffle',
+      element: shuffleDisplay,
+      button: shuffleBtn
+    },
+    {
+      name: 'compare',
+      element: compareDisplay,
+      button: compareBtn
+    },
+    {
+      name: 'search',
+      element: searchResults,
+      button: searchBtn
+    }]
 
-      homeBtn.classList.remove("side-bar__icon-container--selected");
-      shuffleBtn.classList.remove("side-bar__icon-container--selected");
-      compareBtn.classList.remove("side-bar__icon-container--selected");
-      searchBtn.classList.add("side-bar__icon-container--selected");
-  
-    } else if (centralContentStatus === "shuffle") {
-      homeContent.classList.add("hidden");
-      searchResults.classList.add("hidden");
-      showDisplay.classList.add("hidden");
-      compareDisplay.classList.add("hidden");
-      shuffleDisplay.classList.remove("hidden");
-  
-      homeBtn.classList.remove("side-bar__icon-container--selected");
-      shuffleBtn.classList.add("side-bar__icon-container--selected");
-      compareBtn.classList.remove("side-bar__icon-container--selected");
-      searchBtn.classList.remove("side-bar__icon-container--selected");
+    statusArr.forEach((status) =>{
+      if(centralContentStatus != status.name) {
+        status.element.classList.add('hidden');
+        status.button.classList.remove('side-bar__icon-container--selected');
+      } else { 
+        status.element.classList.remove('hidden');
+        status.button.classList.add('side-bar__icon-container--selected');
+      }
+
       
-    } else if (centralContentStatus === "compare") {
-      homeContent.classList.add("hidden");
-      searchResults.classList.add("hidden");
-      showDisplay.classList.add("hidden");
-      shuffleDisplay.classList.add("hidden");
-      compareDisplay.classList.remove("hidden");
-  
-      homeBtn.classList.remove("side-bar__icon-container--selected");
-      shuffleBtn.classList.remove("side-bar__icon-container--selected");
-      compareBtn.classList.add("side-bar__icon-container--selected");
-      searchBtn.classList.remove("side-bar__icon-container--selected");
-    }
-  };
+      if(centralContentStatus === 'search') {
+        gridSliderContainer.classList.remove('hidden');
+      } else {
+        gridSliderContainer.classList.add('hidden')
+      }
+    })
+}

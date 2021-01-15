@@ -1,0 +1,12 @@
+
+.hr {
+  border: 1px solid $color-grey-dark-1;
+
+  &--light {
+    opacity: 20%;
+  }
+
+  // @media only screen and (max-width: $bp-medium) {
+  //   margin-bottom: $content-padding;
+  // }
+}

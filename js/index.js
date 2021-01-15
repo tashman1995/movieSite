@@ -13,13 +13,17 @@ const accountBtn = document.getElementById("account-btn");
 const navToggleBtn = document.getElementById("navigation-toggle");
 const navBar = document.querySelector(".side-bar");
 const cornerLogo = document.querySelector(".side-bar__logo");
-
+const gridSlider = document.querySelector("#grid-slider");
+const gridSliderContainer = document.querySelector("#grid-slider-container");
 const lscapeCardImages = document.querySelectorAll(".lscape-card__img");
 const filmCardImages = document.querySelectorAll(".film-card__info-backdrop");
 const compareSearchInputs = document.querySelectorAll(
   ".search__input--compare"
 );
 
+/////////////////////////////////////////////////////////////////
+// LOADING INITIAL HOME PAGE
+/////////////////////////////////////////////////////////////////
 
 let centralContentStatus = "home";
 let previousContentStatus = "home";
@@ -27,7 +31,43 @@ let previousContentStatus = "home";
 checkStatusUpdateContent(centralContentStatus);
 centralContentHome = createCentralContent(homeContent);
 
-// SELECTED SHOW DISPLAY
+/////////////////////////////////////////////////////////////////
+// HOME PAGE HORIZONTAL SUGGESTIONS
+/////////////////////////////////////////////////////////////////
+
+const suggestionContainers = document.querySelectorAll(
+  ".suggestions__cards-container"
+);
+
+suggestionContainers[1].classList.add("suggestions__cards-container--moveLeft");
+const switchSuggestions = (e) => {
+  let type = e.toElement.innerText;
+
+  if (type === "Movies") {
+    suggestionContainers[1].classList.remove(
+      "suggestions__cards-container--moveLeft"
+    );
+    suggestionContainers[0].classList.add(
+      "suggestions__cards-container--moveRight"
+    );
+    moviesSuggestionsBtn.classList.remove("suggestions__heading--not-selected");
+    tvShowSuggestionsBtn.classList.add("suggestions__heading--not-selected");
+
+  } else {
+    suggestionContainers[1].classList.add(
+      "suggestions__cards-container--moveLeft"
+    );
+    suggestionContainers[0].classList.remove(
+      "suggestions__cards-container--moveRight"
+    );
+    moviesSuggestionsBtn.classList.add("suggestions__heading--not-selected");
+    tvShowSuggestionsBtn.classList.remove("suggestions__heading--not-selected");
+  }
+};
+
+/////////////////////////////////////////////////////////////////
+// SHOWING DATA ON SELECTION
+/////////////////////////////////////////////////////////////////
 
 const onShowSelect = async (imdbID, targetEl) => {
   const response = await axios.get("http://www.omdbapi.com/", {
@@ -36,8 +76,6 @@ const onShowSelect = async (imdbID, targetEl) => {
       i: imdbID,
     },
   });
-
-  // console.log(response.data);
 
   targetEl.innerHTML = "";
 
@@ -49,13 +87,11 @@ const onShowSelect = async (imdbID, targetEl) => {
     checkStatusUpdateContent("shuffle");
   }
 };
-
-//AUTO COMPLETE
+/////////////////////////////////////////////////////////////////
+// AUTO COMPLETE CONFIGURATION FOR ALL AUTO-COMPLETES
+/////////////////////////////////////////////////////////////////
 
 const autoCompleteConfig = {
-  // What renders for each result
-
-  //What the value of the search bar becomes when an option is selected
   inputValue(movie) {
     return movie.Title;
   },
@@ -79,13 +115,9 @@ const autoCompleteConfig = {
 
 const searchInput = document.querySelector("#search-input");
 
-const checkIfInputValue = () => {
-  if (searchInput.value) {
-  } else {
-  }
-};
-
+/////////////////////////////////////////////////////////////////
 // TOP PAGE AUTOCOMPLETE
+/////////////////////////////////////////////////////////////////
 
 createAutoComplete({
   ...autoCompleteConfig,
@@ -121,41 +153,9 @@ createAutoComplete({
   resultOutputElement: showDisplay,
 });
 
-//////////////////////////////////////////////////
-// HOME PAGE HORIZONTAL SUGGESTIONS
-//////////////////////////////////////////////////
-const suggestionContainers = document.querySelectorAll(
-  ".suggestions__cards-container"
-);
-
-suggestionContainers[1].classList.add("suggestions__cards-container--moveLeft");
-const switchSuggestions = (e) => {
-  let type = e.toElement.innerText;
-
-  if (type === "Movies") {
-    suggestionContainers[1].classList.remove(
-      "suggestions__cards-container--moveLeft"
-    );
-    suggestionContainers[0].classList.add(
-      "suggestions__cards-container--moveRight"
-    );
-    moviesSuggestionsBtn.classList.remove("suggestions__heading--not-selected");
-    tvShowSuggestionsBtn.classList.add("suggestions__heading--not-selected");
-  } else {
-    suggestionContainers[1].classList.add(
-      "suggestions__cards-container--moveLeft"
-    );
-    suggestionContainers[0].classList.remove(
-      "suggestions__cards-container--moveRight"
-    );
-    moviesSuggestionsBtn.classList.add("suggestions__heading--not-selected");
-    tvShowSuggestionsBtn.classList.remove("suggestions__heading--not-selected");
-  }
-};
-
-//////////////////////////////////////////////////
-// COMPARE AUTOCOMPLETES
-//////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
+// SHOW COMPARE AUTOCOMPLETES
+/////////////////////////////////////////////////////////////////
 
 createAutoComplete({
   ...autoCompleteConfig,
@@ -173,9 +173,9 @@ createAutoComplete({
   resultOutputElement: document.getElementById("comp-display-left"),
 });
 
-//////////////////////////////////////////////////
-// TOGGLE NAV MENU
-//////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
+// TOGGLE NAV MENU FOR MOBILE
+/////////////////////////////////////////////////////////////////
 
 const toggleNavMenu = () => {
   const viewportWidth =
@@ -189,33 +189,39 @@ const toggleNavMenu = () => {
   }
 };
 
-//////////////////////////////////////////////////
-// RESULTS CARD SLIDER
-//////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
+// RESULTS GRID SIZE SLIDER
+/////////////////////////////////////////////////////////////////
 
-document.getElementById('grid-slider').addEventListener('input', (event) => {
-  console.log(event.target.value)
-  const resultsGrid = document.querySelector('.results');
-  resultsGrid.style['grid-template-columns'] = `repeat(auto-fit, minmax(${event.target.value.toString()}rem, 1fr))`;
-  console.log(`repeat(auto-fit, minmax(${event.target.value}rem, 1fr))`);
-})
+document.getElementById("grid-slider").addEventListener("input", (event) => {
+  updateGridSize(event.target.value.toString())
+});
+
+const updateGridSize = (size) => {
+  const resultsGrid = document.querySelector(".results");
+  resultsGrid.style[
+    "grid-template-columns"
+  ] = `repeat(auto-fit, minmax(${size}rem, 1fr))`;
+};
 
 //////////////////////////////////////////////////
 // BUTTON EVENT LISTENERS
 //////////////////////////////////////////////////
+
 const moviesSuggestionsBtn = document.querySelector("#movieSuggestionsBtn");
 const tvShowSuggestionsBtn = document.querySelector("#tvShowSuggestionsBtn");
-
 moviesSuggestionsBtn.addEventListener("click", switchSuggestions);
+
 tvShowSuggestionsBtn.addEventListener("click", switchSuggestions);
+
 shufflePageBtn.addEventListener("click", randomSearch);
+
 shuffleBtn.addEventListener("click", () => {
   randomSearch();
   searchInput.value = "";
   toggleNavMenu();
 });
 
-searchInput.addEventListener("input", checkIfInputValue);
 homeBtn.addEventListener("click", () => {
   checkStatusUpdateContent("home");
   searchInput.value = "";
@@ -241,18 +247,12 @@ navToggleBtn.addEventListener("click", toggleNavMenu);
 
 cornerLogo.addEventListener("click", () => {
   checkStatusUpdateContent("home");
+  searchInput.value = "";
 });
 
-// TOP PICKS EVENT LISTENER
 filmCardImages.forEach((card) => {
   card.addEventListener("click", () => {
     onShowSelect(card.dataset.id, showDisplay);
   });
 });
 
-// TOP PICK FILMS GENERATOR
-// let topPickFilms = ['Interstellar', 'inception', 'Django Unchained', '1917'];
-// const topPicksContainer = document.querySelector('.top-picks');
-// for(i = 0; i < topPickFilms.length; i++){
-//   createFilmCard(topPickFilms[i], topPicksContainer);
-// }

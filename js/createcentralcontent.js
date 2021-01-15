@@ -94,13 +94,16 @@ const createSuggestions = (showTypes) => {
   };
 
   const hr = document.createElement("hr");
-  hr.classList.add("hr","portrait-hidden");
+  hr.classList.add("hr", "portrait-hidden");
 
   for (type of showTypes) {
-    const showType = (type[0].type === 'movie') ? 'Movies' : 'Tv Shows' ;
+    const showType = type[0].type === "movie" ? "Movies" : "Tv Shows";
     // const showType = (type[0].type)
     const titleForPortraitMode = document.createElement("div");
-    titleForPortraitMode.classList.add("suggestions__heading", "suggestions__heading--portrait");
+    titleForPortraitMode.classList.add(
+      "suggestions__heading",
+      "suggestions__heading--portrait"
+    );
     titleForPortraitMode.innerHTML = `
     <h2 class="secondary-heading ">${showType}</h2>
     <hr class="suggestions__hr">
@@ -109,8 +112,6 @@ const createSuggestions = (showTypes) => {
     suggestionCards.appendChild(hr);
     suggestionCards.appendChild(createCardContainer(type));
   }
-
- 
 
   suggestions.appendChild(suggestionHeadings);
   suggestions.appendChild(hr);

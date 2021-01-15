@@ -104,14 +104,14 @@ const showTemplate = (show) => {
       <p class="show__paragraph bottom-margin"><span class = "show__paragraph--bold" >Awards:</span> ${show.Awards}</p>
     <hr class="hr bottom-margin">
     <div class="show__people-involved">
-      <p class="two-column">
+      
         
-        <span class="show__paragraph"><span class=" show__paragraph--bold">Director:&nbsp;&nbsp;&nbsp;</span>${show.Director}</span>
+        <p class="show__paragraph"><span class=" show__paragraph--bold">Director:&nbsp;&nbsp;&nbsp;</span>${show.Director}</p>
         
-        <span class="show__paragraph"><span class=" show__paragraph--bold">Cast:&nbsp;&nbsp;&nbsp;</span>${show.Actors}</span>
+        <p class="show__paragraph"><span class=" show__paragraph--bold">Cast:&nbsp;&nbsp;&nbsp;</span>${show.Actors}</p>
 
-        <span class="show__paragraph"><span class=" show__paragraph--bold">Writers:&nbsp;&nbsp;&nbsp;</span>${show.Writer}</span>
-      </p>
+        <p class="show__paragraph"><span class=" show__paragraph--bold">Writers:&nbsp;&nbsp;&nbsp;</span>${show.Writer}</p>
+      
     </div>
 
 

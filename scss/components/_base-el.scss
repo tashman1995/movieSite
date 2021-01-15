@@ -1,0 +1,89 @@
+
+
+.base {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s ease-out;
+  z-index: 2;
+
+  &__container {
+    height: 50vh;
+    overflow: hidden;
+    position: relative;
+
+    &:hover .base__img {
+      transform: scale(1.1);
+      filter: blur(2px);
+      filter: brightness(60%);
+    }
+
+    @media only screen and (max-width: $bp-largest) {
+      height: 60vh;
+    }
+
+    @media only screen and (max-width: $bp-medium) {
+      height: 40vh;
+    }
+  }
+
+  &__img {
+    width: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: -50rem;
+    transition: all 0.6s ease-out;
+
+    @media only screen and (max-width: $bp-small) {
+      top: -25rem;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: auto;
+    padding: 3rem 6rem 0 6rem;
+    width: 45rem;
+    height: 100%;
+    z-index: 2;
+    background-image: linear-gradient(
+      to right,
+      rgba(246, 246, 246, 0) 0%,
+      rgba(0, 0, 0, 0.4) 20%
+    );
+
+    @media only screen and (max-width: $bp-largest) {
+      padding: 3rem 4rem 0 4rem;
+      width: 40rem;
+    }
+
+    @media only screen and (max-width: $bp-medium) {
+      width: 55rem;
+    }
+
+    @media only screen and (max-width: $bp-small) {
+      justify-content: flex-end;
+      width: 45rem;
+      padding: 0 0 (2 * $content-padding) 0;
+    }
+
+    & .paragraph {
+      @media only screen and (max-width: $bp-small) {
+        display: none;
+      }
+    }
+  }
+
+  &__sub-details {
+    display: flex;
+    width: 70%;
+    justify-content: space-between;
+  }
+
+  &__ctas {
+    display: flex;
+    margin-top: 0.5rem;
+  }
+}

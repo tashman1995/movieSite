@@ -1,0 +1,49 @@
+.rating {
+  margin-right: 2rem;
+
+  &__main {
+    line-height: 1;
+    font-size: 3.8rem;
+    font-weight: 700;
+
+    @media only screen and (max-width: $bp-medium) {
+      font-size: 6rem;
+    }
+
+    @media only screen and (max-width: $bp-small-medium) {
+      font-size: 4.5rem;
+    }
+  }
+
+  &__out-of {
+    opacity: 60%;
+    margin-left: -2px;
+
+    @media only screen and (max-width: $bp-medium) {
+      font-size: 2.6rem;
+    }
+
+    @media only screen and (max-width: $bp-small-medium) {
+      font-size: 2.2rem;
+    }
+  }
+
+  &__value {
+    margin-bottom: 0.3rem;
+    width: 6.9rem;
+
+    @media only screen and (max-width: $bp-medium) {
+      width: max-content;
+    }
+  }
+
+  &__votes {
+    opacity: 60%;
+    text-align: center;
+    line-height: 1;
+
+    @media only screen and (max-width: $bp-medium) {
+      font-size: 2rem;
+    }
+  }
+}

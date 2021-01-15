@@ -1,0 +1,47 @@
+
+.colour-btn {
+  &,
+  &:link,
+  &:visited {
+    text-decoration: none;
+    padding: 0.8rem 1.8rem;
+    display: inline-block;
+    border-radius: 10rem;
+    animation: moveInBottom 2s ease-out;
+    animation-delay: 0.3s;
+    animation-fill-mode: backwards;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    font-size: 1.6rem;
+    color: $color-white;
+    background-color: $color-primary;
+    //Removing button styling
+    font-weight: 300;
+    outline: none;
+    border: none;
+    cursor: pointer;
+
+    @media only screen and (max-width: $bp-small) {
+      font-size: 2.4rem;
+      margin-top: 1rem;
+    }
+  }
+
+  &:hover,
+  &:focus {
+    transform: translateY(-0.3rem);
+
+    outline: none;
+
+    &::after {
+      background-color: $color-white;
+      transform: scale(1.5);
+      opacity: 0;
+    }
+  }
+
+  &:active,
+  &:focus {
+    transform: translateY(-0.1rem);
+  }
+}

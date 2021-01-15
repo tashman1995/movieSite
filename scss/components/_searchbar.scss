@@ -1,0 +1,107 @@
+////////////////////////////////
+//Search Bar
+////////////////////////////////
+.search {
+  flex: 0 0 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @media only screen and (max-width: $bp-largest) {
+    flex: 0 0 60%;
+    
+  }
+  @media only screen and (max-width: $bp-medium) {
+    flex: 0 0 100%;
+    margin: 0 auto;
+    background-color: $color-white;
+    
+  }
+
+  &__input {
+    font-family: inherit;
+    font-size: 1.6rem;
+    color: $color-grey-dark-1;
+    background-color: $color-white;
+    border: none;
+    padding: 1rem 2rem;
+    // border-radius: 100px;
+    width: 100%;
+    transition: all 0.2s;
+    margin-right: -3.5rem;
+
+    @media only screen and (max-width: $bp-medium) {
+      font-size: 3rem;
+      padding: 1.5rem 3rem;
+      margin-right: 0;
+      background-color: transparent;
+    }
+
+    &--compare {
+      width: 100%;
+      border-radius: 0;
+      z-index: 20;
+      margin-right: 0rem;
+
+      &:focus {
+        transform: scale(1) !important;
+      }
+
+
+    }
+
+    &:focus {
+      outline: none;
+      transform: scale(1.02);
+
+      @media only screen and (max-width: $bp-medium) {
+        transform: scale(1) !important;
+      }
+
+    }
+
+    &:-webkit-input-placeholder {
+      font-weight: 100;
+      color: $color-bg;
+    }
+  }
+
+  &__input:focus + &__button {
+    transform: scale(1.1);
+
+    @media only screen and (max-width: $bp-medium) {
+      transform: scale(1) !important;
+    }
+  }
+
+  &__button {
+    border: none;
+    background-color: $color-white;
+    z-index: 20;
+    transition: all 0.2s;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:active {
+      transform: translateY(3px);
+    }
+
+    @media only screen and (max-width: $bp-medium) {
+      font-size: 3rem;
+      padding: 1.5rem 3rem;
+      margin-right: 0;
+    }
+  }
+
+  &__icon {
+    height: 2rem;
+    width: 2rem;
+    fill: $color-bg;
+
+    @media only screen and (max-width: $bp-medium) {
+      height: 3.5rem;
+      width: 3.5rem;
+    }
+  }
+}

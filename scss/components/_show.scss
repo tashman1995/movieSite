@@ -1,0 +1,152 @@
+.show {
+  display: flex;
+  padding: $content-padding;
+
+  @media only screen and (max-width: $bp-medium) {
+    padding: 2 * $content-padding;
+  }
+  @media only screen and (max-width: $bp-small) {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__img-container {
+    width: max-content;
+    @media only screen and (max-width: $bp-small) {
+      display: flex;
+      width: 100%;
+    }
+  }
+
+  &__img {
+    width: 30rem;
+
+    @media only screen and (max-width: $bp-largest) {
+      width: 35rem;
+    }
+    @media only screen and (max-width: $bp-medium) {
+      width: 50rem;
+    }
+
+    @media only screen and (max-width: $bp-small-medium) {
+      width: 40rem;
+    }
+    @media only screen and (max-width: $bp-small) {
+      width: 70%;
+      margin: 0 auto !important;
+    }
+  }
+
+  &__top-line {
+    display: flex;
+    align-items: center;
+    padding-bottom: $content-padding;
+
+    @media only screen and (max-width: $bp-small) {
+      padding: $content-padding 0;
+    }
+  }
+
+  &__rating {
+    margin-left: auto;
+    padding-left: $content-padding;
+
+    @media only screen and (max-width: $bp-medium) {
+      padding-left: 1 * $content-padding;
+    }
+  }
+
+  &__main-details {
+    padding: 0 0 $content-padding $content-padding;
+
+    @media only screen and (max-width: $bp-medium) {
+      padding: 0 0 0 (2 * $content-padding);
+    }
+
+    @media only screen and (max-width: $bp-small) {
+      padding: 0 0 0 $content-padding;
+      // flex: 1 1 60%;
+    }
+  }
+
+  &__sub-titles {
+    display: flex;
+    justify-content: space-evenly;
+    opacity: 60%;
+
+    @media only screen and (max-width: $bp-medium) {
+      flex-wrap: wrap;
+
+      & > .paragraph {
+        font-size: 3rem;
+
+        &:not(:last-child) {
+          margin-bottom: 0.5 * $content-padding;
+        }
+      }
+      & > .secondary-heading {
+        display: none;
+      }
+    }
+  }
+
+  &__paragraph {
+    font-size: 1.6rem;
+    line-height: 3.2rem;
+    display: inline-block;
+
+    @media only screen and (max-width: $bp-medium) {
+      font-size: 2.4rem;
+      margin-bottom: 0.5 * $content-padding;
+    }
+
+    @media only screen and (max-width: $bp-small) {
+      font-size: 3.2rem;
+    }
+
+    &--bold {
+      font-weight: bold;
+      display: block;
+
+      @media only screen and (max-width: $bp-small) {
+        margin-bottom: $content-padding / 2;
+        // margin-top: $content-padding;
+      }
+    }
+  }
+
+  &__people-involved {
+    display: grid;
+    margin-bottom: $content-padding;
+  
+  }
+
+  &__cast {
+    width: 50%;
+  }
+
+  &__creators {
+    width: 50%;
+    margin-left: $content-padding;
+  }
+
+  &__other-ratings {
+    display: flex;
+    justify-content: space-evenly;
+
+    @media only screen and (max-width: $bp-small) {
+      display: none;
+    }
+  }
+
+  &__other-rating {
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @media only screen and (max-width: $bp-medium) {
+      width: 28%;
+    }
+  }
+}

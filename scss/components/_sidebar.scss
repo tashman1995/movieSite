@@ -1,0 +1,243 @@
+//////////////////////////////////////////
+// SIDE BAR
+/////////////////////////////////////////
+
+.side-bar {
+  @media only screen and (max-width: $bp-small) {
+    &__icon-container {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    &--nav-open {
+      height: 100vh;
+      & .side-bar__icon-container {
+        opacity: 100%;
+        visibility: visible;
+      }
+    }
+  }
+  &__logo {
+    cursor: pointer;
+    margin: 2rem 2px 2rem 0;
+    text-align: center;
+    font-size: 2.2rem;
+    line-height: 1;
+    font-family: "Montserrat", sans-serif;
+    transition: opacity 0.1s;
+
+    &--bold {
+      font-weight: 900;
+      font-size: 2.3rem;
+    }
+
+    @media only screen and (max-width: $bp-medium) {
+      margin: auto 0 auto 0;
+      font-size: 3.5rem;
+
+      &--bold {
+        font-size: 3.5rem;
+      }
+    }
+
+    @media only screen and (max-width: $bp-small) {
+      font-size: 5rem;
+
+      &--bold {
+        font-size: 5rem;
+      }
+    }
+  }
+
+  &__icons-container {
+    margin-top: 8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @media only screen and (max-width: $bp-medium) {
+      flex-direction: row;
+      align-items: center;
+      margin-top: 0;
+      width: 100%;
+      justify-content: space-evenly;
+    }
+
+    @media only screen and (max-width: $bp-small) {
+      flex-direction: column;
+      margin-right: 13rem;
+    }
+  }
+
+  &__icon-container {
+    display: flex;
+    flex-direction: column;
+    transition: opacity 0.2s ease-out;
+
+    &:nth-child(2) > .side-bar__icon {
+      transform: scale(0.85);
+    }
+
+    &:nth-child(4) > .side-bar__icon {
+      transform: scale(0.75);
+    }
+
+    & > .side-bar__icon {
+      opacity: 60%;
+    }
+    & > .side-bar__hr {
+      width: 0rem;
+      visibility: hidden;
+    }
+
+    &:nth-child(3) > .side-bar__icon {
+      transform: rotate(90deg);
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 6rem;
+
+      @media only screen and (max-width: $bp-medium) {
+        margin-bottom: 0;
+      }
+    }
+
+    &--selected {
+      & > .side-bar__icon {
+        opacity: 100%;
+      }
+      & > .side-bar__hr {
+        width: 2rem;
+        visibility: visible;
+
+        @media only screen and (max-width: $bp-medium) {
+          width: 3rem;
+        }
+        @media only screen and (max-width: $bp-small) {
+          width: 5rem;
+        }
+      }
+    }
+  }
+
+  &__icon {
+    cursor: pointer;
+    height: 3.2rem;
+    width: 3.2rem;
+    fill: $color-white;
+
+    @media only screen and (max-width: $bp-medium) {
+      height: 4.2rem;
+      width: 4.2rem;
+    }
+
+    @media only screen and (max-width: $bp-small) {
+      height: 7rem;
+      width: 7rem;
+    }
+
+    transition: all 0.2s ease-in;
+    // transition: transform .2s ease-in;
+
+    &:hover {
+      // transform: scale(1.1);
+      opacity: 100%;
+
+      & + .side-bar__hr {
+        width: 2rem;
+        visibility: visible;
+      }
+    }
+  }
+
+  &__hr {
+    width: 0rem;
+    margin: 0.5rem auto 0rem;
+    text-align: center;
+    border: 1px solid $color-primary;
+    transition: all 0.6s;
+    visibility: hidden;
+
+    &--hidden {
+      width: 0;
+    }
+  }
+
+  &__button {
+    text-align: center;
+    display: none;
+    @media only screen and (max-width: $bp-small) {
+      display: block;
+    }
+  }
+
+  &__button--cross &__toggle-icon {
+    background-color: transparent;
+    transform: translateX(5px);
+  }
+
+  &__button--cross &__toggle-icon::before {
+    transform: rotate(45deg) translateY(10px);
+  }
+
+  &__button--cross &__toggle-icon::after {
+    transform: rotate(-45deg) translateY(-10px);
+  }
+
+  &__toggle-icon {
+    margin-top: 9.5rem;
+    position: relative;
+    transition: all 0.2s;
+    &,
+    &::before,
+    &::after {
+      width: 5.5rem;
+      height: 2px;
+      background-color: $color-white;
+      display: inline-block;
+    }
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      transition: all 0.2s;
+    }
+
+    &::before {
+      top: -1.5rem;
+    }
+    &::after {
+      top: 1.5rem;
+    }
+  }
+
+  &__button:hover &__icon::before {
+    top: -1rem;
+  }
+  &__button:hover &__icon::after {
+    top: 1rem;
+  }
+}
+
+.user-menu {
+  width: 100%;
+  display: none;
+  bottom: 0;
+  height: 0;
+  font-size: 2.4rem;
+
+  &--visible {
+    display: block;
+    height: min-content;
+  }
+}
+
+#account-btn {
+  display: none;
+
+  @media only screen and (max-width: $bp-small) {
+    display: block;
+  }
+}

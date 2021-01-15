@@ -1,5 +1,23 @@
 @import "base";
 @import "layout";
-@import "components";
 @import "typography";
 @import "utilities";
+
+@import "./components/base-el";
+@import "./components/colour-btn";
+@import "./components/comp-display";
+@import "./components/comparison";
+@import "./components/drop-down";
+@import "./components/dropdown";
+@import "./components/film-card";
+@import "./components/grid-slider";
+@import "./components/hr";
+@import "./components/lscape-card";
+@import "./components/movie-details";
+@import "./components/page-title";
+@import "./components/rating";
+@import "./components/results-card";
+@import "./components/searchbar";
+@import "./components/show";
+@import "./components/sidebar";
+@import "./components/suggestions";
