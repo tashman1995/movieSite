@@ -1,4 +1,5 @@
 const showTemplate = (show) => {
+  console.log(show)
   let showRatings1 = 'N/A';
   let showRatings2 = 'N/A';
   let showRatings3 = 'N/A';

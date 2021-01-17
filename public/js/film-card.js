@@ -3,7 +3,7 @@ const createFilmCard = async (movie,targetElement) => {
     
     const  fetchFilm  = async (movie) => {
 
-        const response = await axios.get("http://www.omdbapi.com/", {
+        const response = await axios.get("https://www.omdbapi.com/", {
           params: {
             apikey: "1ff2c261",
             t: movie

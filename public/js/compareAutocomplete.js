@@ -112,7 +112,7 @@ const runComparison = () => {
   };
   
   const onCompareShowSelect = async (imdbID, targetEl, dropdownEl) => {
-    const response = await axios.get("http://www.omdbapi.com/", {
+    const response = await axios.get("https://www.omdbapi.com/", {
       params: {
         apikey: "1ff2c261",
         i: imdbID,

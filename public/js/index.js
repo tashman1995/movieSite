@@ -52,7 +52,6 @@ const switchSuggestions = (e) => {
     );
     moviesSuggestionsBtn.classList.remove("suggestions__heading--not-selected");
     tvShowSuggestionsBtn.classList.add("suggestions__heading--not-selected");
-
   } else {
     suggestionContainers[1].classList.add(
       "suggestions__cards-container--moveLeft"
@@ -70,7 +69,7 @@ const switchSuggestions = (e) => {
 /////////////////////////////////////////////////////////////////
 
 const onShowSelect = async (imdbID, targetEl) => {
-  const response = await axios.get("http://www.omdbapi.com/", {
+  const response = await axios.get("https://www.omdbapi.com/", {
     params: {
       apikey: "1ff2c261",
       i: imdbID,
@@ -98,7 +97,7 @@ const autoCompleteConfig = {
 
   //How data is fetched from the database
   async fetchData(searchTerm) {
-    const response = await axios.get("http://www.omdbapi.com/", {
+    const response = await axios.get("https://www.omdbapi.com/", {
       params: {
         apikey: "1ff2c261",
         s: searchTerm,
@@ -194,7 +193,7 @@ const toggleNavMenu = () => {
 /////////////////////////////////////////////////////////////////
 
 document.getElementById("grid-slider").addEventListener("input", (event) => {
-  updateGridSize(event.target.value.toString())
+  updateGridSize(event.target.value.toString());
 });
 
 const updateGridSize = (size) => {
@@ -255,4 +254,3 @@ filmCardImages.forEach((card) => {
     onShowSelect(card.dataset.id, showDisplay);
   });
 });
-
