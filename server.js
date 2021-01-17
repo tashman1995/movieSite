@@ -7,9 +7,6 @@ app.get("/", function (req, res) {
   res.sendFile(__dirname + "/" + "index.html");
 });
 
-var server = app.listen(8081, function () {
-  var host = server.address().address;
-  var port = server.address().port;
+const PORT = process.env.PORT || 5000;
 
-  console.log("Example app listening at http://%s:%s", host, port);
-});
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
