@@ -16,7 +16,6 @@ const showTemplate = (show) => {
     }
   }
   
-  console.log(show)
 
   if(show.Type === 'series') {
     showSpecificData = `<span class = "show__paragraph--bold" >Duration:&nbsp;&nbsp;&nbsp;</span>${show.totalSeasons} Seasons,    ${show.Year}`
