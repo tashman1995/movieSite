@@ -12,9 +12,6 @@ const runComparison = () => {
       if (rightSideStats.length > 0) {
         const leftSideValue = parseInt(leftStat.dataset.value);
         const rightSideValue = parseInt(rightStat.dataset.value);
-        console.log("left ", leftSideValue);
-        console.log(leftSideValue === NaN);
-        console.log("right ", rightSideValue);
   
         if (rightSideValue > leftSideValue || Number.isNaN(leftSideValue)) {
           leftStat.classList.add("movie-details__lower");

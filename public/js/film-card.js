@@ -1,36 +1,27 @@
-const createFilmCard = async (movie,targetElement) => {
-    
-    
-    const  fetchFilm  = async (movie) => {
+const createFilmCard = async (movie, targetElement) => {
+  const fetchFilm = async (movie) => {
+    const response = await axios.get("https://www.omdbapi.com/", {
+      params: {
+        apikey: "1ff2c261",
+        t: movie,
+      },
+    });
 
-        const response = await axios.get("https://www.omdbapi.com/", {
-          params: {
-            apikey: "1ff2c261",
-            t: movie
-          },
-        });
-    
-        if (response.data.Error) {
-            console.log(response.data.Error)
-          return [];
-        }
-        // console.log(response.data)
-        return response.data;
-    }
+    return response.data;
+  };
 
-    const results = await fetchFilm(movie);
-    console.log(results)
-    // console.log(filmDetails)
-    const boxOffice = (parseInt(results.BoxOffice.replace(/\D/g,'') /1000000)).toFixed(0);
+  const results = await fetchFilm(movie);
 
-    const genres = results.Genre.split(", ", 2);
-    const genresString = genres[0] + ',  ' + genres[1]
-    
-    console.log(genresString)
+  const boxOffice = parseInt(
+    results.BoxOffice.replace(/\D/g, "") / 1000000
+  ).toFixed(0);
 
-    const cardElement = document.createElement('div');
-    cardElement.classList.add('film-card');
-    cardElement.innerHTML = `
+  const genres = results.Genre.split(", ", 2);
+  const genresString = genres[0] + ",  " + genres[1];
+
+  const cardElement = document.createElement("div");
+  cardElement.classList.add("film-card");
+  cardElement.innerHTML = `
     <img src="${results.Poster}" alt="" class="film-card__img">
               <div class="film-card__info-backdrop">
                 <div class="film-card__info">
@@ -44,7 +35,5 @@ const createFilmCard = async (movie,targetElement) => {
               </div>
     `;
 
-
-    targetElement.appendChild(cardElement)
-      
-}
+  targetElement.appendChild(cardElement);
+};

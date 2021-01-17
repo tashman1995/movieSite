@@ -181,7 +181,6 @@ const toggleNavMenu = () => {
     window.innerWidth || document.documentElement.clientWidth;
 
   if (viewportWidth <= 600) {
-    console.log(viewportWidth);
     navToggleBtn.classList.toggle("side-bar__button--cross");
     navBar.classList.toggle("side-bar--nav-open");
     cornerLogo.classList.toggle("opacity-hidden");

@@ -33,7 +33,6 @@ const randomSearch = async () => {
     onShowSelect(imdbID, shuffleDisplayResults);
     return;
   } else {
-    console.log("false");
     randomSearch();
   }
 };
